@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid" style="height: 80%;">
+    <div class="row">
+        <div class="card w-100">
+            <form>
+                <div class="form-groud">
+                    <div class="card-header text-center">
+                        <label>Scenario Title</label>
+                        <input type="text" class="form-control" id="scenarioTitle" placeholder="Give your scenario title">
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <img src="/static/img/A.jpg" alt="..." class="img-fluid" style="height: 250px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body  text-center">
+                                        <img src="/static/img/B.jpg" alt="..." class="img-fluid" style="height: 250px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center" style="height: 200px;">
+                            <div class="col-md-12">
+                                <p>This is the sliding window.</p>
+                                <div id="carouselOne" class="carousel" data-ride="carousel" style="width: 100%;">
+                                    <label>Phase 1</label>
+                                    <ol class="carousel-indicators">
+                                      <li data-target="#carouselOne" data-slide-to="0" class="active"></li>
+                                      <li data-target="#carouselOne" data-slide-to="1"></li>
+                                      <li data-target="#carouselOne" data-slide-to="2"></li>
+                                    </ol>
+                                    <div class="carousel-inner pull-left">
+                                      <div class="carousel-item active">
+                                        <a href="#" class="btn btn-info w-100">A</a>
+                                      </div>
+                                      <div class="carousel-item">
+                                        <a href="#" class="btn btn-info w-100">B</a>
+                                      </div>
+                                      <div class="carousel-item pull-right">
+                                        <a href="#" class="btn btn-info w-100">C</a>
+                                      </div>
+                                    </div>
+                                    <!--
+                                    <a class="carousel-control-prev" href="#carouselOne" role="button" data-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselOne" role="button" data-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Next</span>
+                                    </a>
+                                    -->
+                                </div>
+                                <div id="carouselTwo" class="carousel invisible" data-ride="carousel" style="width: 100%;">
+                                    <label>Phase 2</label>
+                                    <ol class="carousel-indicators">
+                                      <li data-target="#carouselTwo" data-slide-to="0" class="active"></li>
+                                      <li data-target="#carouselTwo" data-slide-to="1"></li>
+                                      <li data-target="#carouselTwo" data-slide-to="2"></li>
+                                    </ol>
+                                    <div class="carousel-inner pull-left">
+                                      <div class="carousel-item active">
+                                        <a href="#" class="btn btn-info w-100">A</a>
+                                      </div>
+                                      <div class="carousel-item">
+                                        <a href="#" class="btn btn-info w-100">B</a>
+                                      </div>
+                                      <div class="carousel-item pull-right">
+                                        <a href="#" class="btn btn-info w-100">C</a>
+                                      </div>
+                                    </div>
+                                    <!--
+                                    <a class="carousel-control-prev" href="#carouselTwo" role="button" data-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselTwo" role="button" data-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Next</span>
+                                    </a>
+                                    -->
+                                </div>
+                                <div id="carouselThree" class="carousel invisible" data-ride="carousel" style="width: 100%;">
+                                    <label>Phase 3</label>
+                                    <ol class="carousel-indicators">
+                                      <li data-target="#carouselThree" data-slide-to="0" class="active"></li>
+                                      <li data-target="#carouselThree" data-slide-to="1"></li>
+                                      <li data-target="#carouselThree" data-slide-to="2"></li>
+                                    </ol>
+                                    <div class="carousel-inner pull-left">
+                                      <div class="carousel-item active">
+                                        <a href="#" class="btn btn-info w-100">A</a>
+                                      </div>
+                                      <div class="carousel-item">
+                                        <a href="#" class="btn btn-info w-100">B</a>
+                                      </div>
+                                      <div class="carousel-item pull-right">
+                                        <a href="#" class="btn btn-info w-100">C</a>
+                                      </div>
+                                    </div>
+                                    <!--
+                                    <a class="carousel-control-prev" href="#carouselThree" role="button" data-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselThree" role="button" data-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Next</span>
+                                    </a>
+                                    -->
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="card-footer">
+                        <div class="float-md-left"><button class="btn btn-xs btn-danger">Start Over</button></div>
+                        <div class="float-md-right"><button class="btn btn-xs btn-danger">Submit</button></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  django_dev:
+    container_name: django_dev
+    restart: always 
+    build: ./django
+    # command: python manage.py runserver 0.0.0.0:2000
+    command: gunicorn __init__.wsgi:application --bind 0.0.0.0:2000
+    volumes:
+      - ./django/:/usr/src/django
+      - data_volume:/usr/src/data
+    environment: 
+      - MEDIA_ROOT=/usr/src/data
+    ports:
+      - 2000:2000
+    env_file:
+      - ./.env.dev
+    depends_on: 
+      - db_dev
+
+  db_dev:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres_dev
+
+volumes:
+    data_volume:
+    postgres_data:

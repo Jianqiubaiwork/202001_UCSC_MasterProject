@@ -9,8 +9,9 @@ A machine learning fairness scenario desigining website
 ### django
 
 ## Deploymnet
-### install docker
+### installation
 
-### config ip
+### setup
 
-### server
+## Usage
+...

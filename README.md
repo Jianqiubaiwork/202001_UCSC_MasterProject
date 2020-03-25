@@ -1,1 +1,2 @@
-# 202001_UCSC_MasterProject
+# Moral Machine 2
+# A machine learning fairness scenario desigining website

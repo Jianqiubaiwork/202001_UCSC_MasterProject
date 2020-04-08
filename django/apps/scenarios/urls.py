@@ -4,5 +4,5 @@ from .views import *
 
 app_name = 'scenarios'
 urlpatterns = [
-    path('', scenarios_view, name='scenarios')
+    path('loan_allocation/', loan_allocation_view, name='loan_allocation'),
 ]

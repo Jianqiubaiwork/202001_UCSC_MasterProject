@@ -21,6 +21,9 @@
   <!-- Custom styles for this template -->
   <link href="/static/css/grayscale.min.css" rel="stylesheet">
 
+  {% block style %}
+  {% endblock %}
+
 </head>
 
 <body id="page-top">
@@ -28,7 +31,7 @@
   {% block nav %}
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="/">Moral Machine 2</a>
+      <a class="navbar-brand js-scroll-trigger" href="/">Fairness Machine</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -39,16 +42,27 @@
             <a class="nav-link js-scroll-trigger" href="/#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/design">Design</a>
+            <a class="nav-link js-scroll-trigger" href="/#scenario">Scenario</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/scenarios">Scenarios</a>
+            <a class="nav-link js-scroll-trigger" href="/data">Data</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/#signup">Contact</a>
           </li>
         </ul>
       </div>
+      <!--
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        {% if request.session.lang == "chn" %}
+            <a href="/en" class="btn btn-secondary">英文</a>
+            <a href="/ch" class="btn btn-primary" disabled="true">中文</a>
+        {% else %}
+            <a href="/en" class="btn btn-primary" disabled="true">ENG</a>
+            <a href="/ch" class="btn btn-secondary">CHN</a>
+        {% endif %}
+      </div>
+      -->
     </div>
   </nav>
   {% endblock %}
@@ -60,8 +74,10 @@
       {% block content %}
       <div class="mx-auto text-center">
         <h1 class="mx-auto my-0 text-uppercase"></h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5">A Machine Learning Fairness Scenario Designer</h2>
-        <a href="/design" class="btn btn-primary js-scroll-trigger">Design</a>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">A Machine Learning Fairness Context-Specific Survey Platform</h2>
+        <a href="#scenario" class="btn btn-primary js-scroll-trigger">Scenario</a>
+        <!--<a href="/scenarios/bail_judgement" class="btn btn-primary js-scroll-trigger">Bail <br> Judgement <br> (TODO) </a>
+        <a href="/scenarios/university_admission" class="btn btn-primary js-scroll-trigger">University <br> Admission <br> (TODO) </a>-->
       </div>
       {% endblock %}
     </div>
@@ -73,7 +89,7 @@
 {% endblock %}
 
 <!-- Design Section -->
-{% block desgin %}
+{% block scenario %}
 {% endblock %}
 
 <!-- Signup Section -->

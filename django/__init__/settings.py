@@ -41,13 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # own
-    'apps.design',
     'apps.scenarios'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # Setup LocaleMiddleware to enable translations using ugettext_lazy and ugettext
+    # Make sure that LocaleMiddleware comes after SessionMiddleware and before CommonMiddleware
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

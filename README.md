@@ -1,7 +1,7 @@
-# Moral Machine 2
+# Fairness Machine
 
 ## Introduction
-A machine learning fairness scenario desigining website
+A website survey tool for machine learning fairness
 
 ## Project Structure
 ### docker

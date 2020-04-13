@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name="home"),
     path('scenarios/', include('apps.scenarios.urls')),
+    path('data/', include('apps.data.urls')),
     path("en/", eng_lang_view, name="eng_lang"),
     path("ch/", chn_lang_view, name="chn_lang"),
     path("http202/", http202_view, name="http202"),

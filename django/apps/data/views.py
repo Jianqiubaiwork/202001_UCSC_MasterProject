@@ -1,14 +1,17 @@
+from django.views.generic import TemplateView
 from django.shortcuts import render
 
+from apps.scenarios.models import *
+
 # Create your views here.
-def data_view(request):
-    '''
-    query_loan_allocation_models = LoanAllocationModel.objects.all()
-    print('here')
-    print(query_loan_allocation_models)
-    context = {
-        'query_loan_allocation_models' : query_loan_allocation_models
-    }
-    return render(request, 'data.html', context)
-    '''
-    return render(request, 'data.html', {})
+class DataView(TemplateView):
+    template_name = 'data.html'
+
+    def get(self, request):
+        all_loan_allocation_models = LoanAllocationModel.objects.all()
+        all_bail_judgement_models = BailJudgementModel.objects.all()
+        context = {
+            'all_loan_allocation_models' : all_loan_allocation_models,
+            'all_bail_judgement_models' : all_bail_judgement_models
+        }
+        return render(request, self.template_name, context)

@@ -4,5 +4,5 @@ from .views import *
 
 app_name = 'data'
 urlpatterns = [
-    path('', data_view, name='data'),
+    path('', DataView.as_view(), name='data'),
 ]

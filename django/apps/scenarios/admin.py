@@ -5,3 +5,4 @@ from .models import *
 class Admin(admin.ModelAdmin):
     pass
 admin.site.register(LoanAllocationModel, Admin)
+admin.site.register(BailJudgementModel, Admin)

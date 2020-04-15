@@ -2,29 +2,81 @@
 {% load static %}
 
 {% block content %}
-<div class="card" style="width: 100%;">
-    <div class="card-header">Header</div>
-    <div class="card-body">
-        <table id="scenariosTable" class="table">
-            <thead>
-                <tr>
-                    <th>Column 1</th>
-                    <th>Column 2</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Row 1 Data 1</td>
-                    <td>Row 1 Data 2</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                </tr>
-            </tbody>
-        </table>
+<div class="container-fluid mt-10" style="height: 90%; margin-top: 4rem;">
+    <div class="card w-100" style="height: 100%;">
+        <div class="card-header">
+            <ul class="nav nav-tabs">
+                <li id="loanAllocationTab" class="active"><a data-toggle="tab" href="#loanAllocationTable">
+                  <button class="btn btn-primary">Loan Allocation</button>
+                </a></li>
+                <li id="bailJudgementTab" class="active"><a data-toggle="tab" href="#bailJudgementTable">
+                    <button class="btn btn-primary">Bail Judgement</button>
+                  </a></li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <table id="loanAllocationTable" class="tab-pane fade in active table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>1a</th>
+                            <th>1b</th>
+                            <th>1c</th>
+                            <th>2a</th>
+                            <th>2d</th>
+                            <th>2c</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in all_loan_allocation_models %}
+                        <tr> 
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.one_one_score }}/9</td>
+                            <td>{{ item.one_two_score }}/9</td>
+                            <td>{{ item.one_three_score }}/9</td>
+                            <td>{{ item.two_one_score }}/9</td>
+                            <td>{{ item.two_two_score }}/9</td>
+                            <td>{{ item.two_three_score }}/9</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <table id="bailJudgementTable" class="tab-pane fade in active table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>1a</th>
+                            <th>1b</th>
+                            <th>2a</th>
+                            <th>2b</th>
+                            <th>3a</th>
+                            <th>3b</th>
+                            <th>4a</th>
+                            <th>4b</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in all_bail_judgement_models %}
+                        <tr> 
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.one_one_score }}/9</td>
+                            <td>{{ item.one_two_score }}/9</td>
+                            <td>{{ item.two_one_score }}/9</td>
+                            <td>{{ item.two_two_score }}/9</td>
+                            <td>{{ item.three_one_score }}/9</td>
+                            <td>{{ item.three_two_score }}/9</td>
+                            <td>{{ item.four_one_score }}/9</td>
+                            <td>{{ item.four_two_score }}/9</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        <div class="card-footer">Footer</div>
     </div>
-    <div class="card-footer">Footer</div>
 </div>
 
 {% endblock %}
@@ -32,7 +84,10 @@
 {% block custom %}
 <script>
     $(document).ready( function () {
-        $('#scenariosTable').DataTable();
+        $('#loanAllocationTable').DataTable();
+        $('#bailJudgementTable').DataTable();
+
+        document.getElementById("loanAllocationTable").classList.add("show");
     });
 </script>
 {% endblock %}

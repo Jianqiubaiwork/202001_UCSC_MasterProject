@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class LoanAllocationModel(models.Model):
+class LoanAllocationAnswerModel(models.Model):
     one_one_score = models.IntegerField(default=-1)
     one_two_score = models.IntegerField(default=-1)
     one_three_score = models.IntegerField(default=-1)
@@ -10,7 +10,7 @@ class LoanAllocationModel(models.Model):
     two_three_score = models.IntegerField(default=-1)
 
 
-class BailJudgementModel(models.Model):
+class BailJudgementAnswerModel(models.Model):
     one_one_score = models.IntegerField(default=-1)
     two_one_score = models.IntegerField(default=-1)
     three_one_score = models.IntegerField(default=-1)

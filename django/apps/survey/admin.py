@@ -4,5 +4,5 @@ from .models import *
 # Register your models here.
 class Admin(admin.ModelAdmin):
     pass
-admin.site.register(LoanAllocationModel, Admin)
-admin.site.register(BailJudgementModel, Admin)
+admin.site.register(LoanAllocationAnswerModel, Admin)
+admin.site.register(BailJudgementAnswerModel, Admin)

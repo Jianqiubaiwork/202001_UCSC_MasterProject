@@ -2,9 +2,9 @@ from django import forms
 
 from .models import *
 
-class LoanAllocationForm(forms.ModelForm):
+class LoanAllocationAnswerForm(forms.ModelForm):
     class Meta:
-        model = LoanAllocationModel
+        model = LoanAllocationAnswerModel
         fields = [
             'one_one_score',
             'one_two_score',
@@ -31,9 +31,9 @@ class LoanAllocationForm(forms.ModelForm):
         }
 
 
-class BailJudgementForm(forms.ModelForm):
+class BailJudgementAnswerForm(forms.ModelForm):
     class Meta:
-        model = BailJudgementModel
+        model = BailJudgementAnswerModel
         fields = [
             'one_one_score',
             'one_two_score',

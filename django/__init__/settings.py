@@ -41,7 +41,8 @@ INSTALLED_APPS = [
 
     # own
     'django_createsuperuser',
-    'apps.scenarios',
+    'apps.design',
+    'apps.survey',
     'apps.data'
 ]
 

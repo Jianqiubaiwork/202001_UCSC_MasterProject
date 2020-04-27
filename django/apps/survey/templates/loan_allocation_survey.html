@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'basis/base.html' %}
 {% load static %}
 
 {% block style %}
@@ -63,7 +63,7 @@
         aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <form action="/scenarios/loan_allocation/" method="post">
+              <form action="/survey/loan_allocation_survey/" method="post">
                 {% csrf_token %}
                 <div class="modal-header">
                   <h5 class="modal-title" id="submissionFormLabel">Review Your Submission</h5>

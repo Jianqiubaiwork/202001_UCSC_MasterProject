@@ -1,32 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'basis/base.html' %}
 {% load static %}
 
-  <!-- About Section -->
-  
-  {% block about %}
-  <!--
-  <section id="about" class="about-section text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2 class="text-white mb-4">Description</h2>
-          <p class="text-white-50">
-              A breif website description goes here.
-          </p>
-        </div>
-      </div>
-      <img src="/static/img/ipad.png" class="img-fluid" alt="">
-    </div>
-  </section>
-  -->
-  {% endblock %}
-
-  <!-- Scenario Section -->
-  {% block scenario %}
-  <section id="scenario" class="contact-section bg-black" style="height: calv(100vh);">
+  <!-- Design Section -->
+  {% block design %}
+  <section id="design" class="contact-section bg-black" style="height: calv(100vh);">
     <div class="container">
 
-      <h1 class="text-light text-center">Scenario</h1>
+      <h1 class="text-light text-center">Design</h1>
 
       <div class="row">
 
@@ -37,7 +17,7 @@
               <h4 class="text-uppercase m-0">Loan Allocation</h4>
               <hr class="my-4">
               <div class="small text-black-50">
-                <a class="btn btn-primary" href="/scenarios/loan_allocation">Goto <br> Questions</a> 
+                <a class="btn btn-primary" href="/design/loan_allocation_design">Goto <br> Design</a> 
               </div>
             </div>
           </div>
@@ -50,7 +30,7 @@
               <h4 class="text-uppercase m-0">Bail Judgement</h4>
               <hr class="my-4">
               <div class="small text-black-50">
-                <a class="btn btn-primary" href="/scenarios/bail_judgement">Goto <br> Questions</a>
+                <a class="btn btn-primary" href="/design/bail_judgement_design">Goto <br> Design</a>
               </div>
             </div>
           </div>
@@ -63,91 +43,92 @@
               <h4 class="text-uppercase m-0">University Admission</h4>
               <hr class="my-4">
               <div class="small text-black-50">
-                <a class="btn btn-primary" href="/scenarios/university_admission">Goto <br> Questions</a>
+                <a class="btn btn-primary" href="/design/university_admission_design">Goto <br> Design</a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
-
-        <div class="col-md-4 mb-3 mb-md-0">
-          <div class="card py-4 h-100">
-            <div class="card-body text-center">
-              
-              <h4 class="text-uppercase m-0"></h4>
-              <hr class="my-4">
-              <div class="small text-black-50"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-3 mb-md-0">
-          <div class="card py-4 h-100">
-            <div class="card-body text-center">
-              
-              <h4 class="text-uppercase m-0"></h4>
-              <hr class="my-4">
-              <div class="small text-black-50"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-3 mb-md-0">
-          <div class="card py-4 h-100">
-            <div class="card-body text-center">
-              
-              <h4 class="text-uppercase m-0"></h4>
-              <hr class="my-4">
-              <div class="small text-black-50"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
   {% endblock %}
 
-  <!-- Signup Section -->
-  {% block signup %}
-  <!--
-  <section id="signup" class="signup-section">
+  <!-- Survey Section -->
+  {% block survey %}
+  <section id="survey" class="contact-section bg-black" style="height: calv(100vh);">
     <div class="container">
+
+      <h1 class="text-light text-center">Survey</h1>
+
       <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto text-center">
 
-          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-          <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              
+              <h4 class="text-uppercase m-0">Loan Allocation</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">
+                <a class="btn btn-primary" href="/survey/loan_allocation_survey">Goto <br> Survey</a> 
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <form class="form-inline d-flex">
-            <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
-            <button type="submit" class="btn btn-primary mx-auto">Subscribe</button>
-          </form>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              
+              <h4 class="text-uppercase m-0">Bail Judgement</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">
+                <a class="btn btn-primary" href="/survey/bail_judgement_survey">Goto <br> Survey</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="col-md-4 mb-3 mb-md-0">
+          <div class="card py-4 h-100">
+            <div class="card-body text-center">
+              
+              <h4 class="text-uppercase m-0">University Admission</h4>
+              <hr class="my-4">
+              <div class="small text-black-50">
+                <a class="btn btn-primary" href="/survey/university_admission_survey">Goto <br> Survey</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
-  -->
   {% endblock %}
 
-  <!-- Contact Section -->
-  {% block contact %}
+  <!-- Author Section -->
+  {% block author %}
   <section class="contact-section bg-black">
     <div class="container">
 
-      <h1 class="text-light text-center">Contact</h1>
+      <h1 class="text-light text-center">Author</h1>
 
       <div class="row">
 
         <div class="col-md-4 mb-3 mb-md-0">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
-              <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">School</h4>
+              <!--<i class="fas fa-map-marked-alt text-primary mb-2"></i>-->
+              <svg class="bi bi-people-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z"/>
+                <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z" clip-rule="evenodd"/>
+              </svg>
+              <h4 class="text-uppercase m-0">Author</h4>
               <hr class="my-4">
+              <div class="small text-black-50">Jianqiu Bai</div>
+              <div class="small text-black-50">jbai14@ucsc.edu</div>
               <div class="small text-black-50">University of California, Santa Cruz</div>
             </div>
           </div>
@@ -156,15 +137,15 @@
         <div class="col-md-4 mb-3 mb-md-0">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
-              <i class="fas fa-envelope text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Email</h4>
+              <!--<i class="fas fa-envelope text-primary mb-2"></i>-->
+              <svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 100-6 3 3 0 000 6zm-5.784 6A2.238 2.238 0 015 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 005 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clip-rule="evenodd"/>
+              </svg>
+              <h4 class="text-uppercase m-0">Advisor</h4>
               <hr class="my-4">
-              <div class="small text-black-50">
-                advisor: <a href="#">yangliu@ucsc.edu</a>
-              </div>
-              <div class="small text-black-50">
-                author: <a href="#">jbai14@ucsc.edu</a>
-              </div>
+              <div class="small text-black-50">Yang Liu</div>
+              <div class="small text-black-50">yangliu@ucsc.edu</div>
+              <div class="small text-black-50">University of California, Santa Cruz</div>
             </div>
           </div>
         </div>
@@ -172,10 +153,15 @@
         <div class="col-md-4 mb-3 mb-md-0">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
-              <i class="fas fa-mobile-alt text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Phone</h4>
+              <!--<i class="fas fa-envelope text-primary mb-2"></i>-->
+              <svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 100-6 3 3 0 000 6zm-5.784 6A2.238 2.238 0 015 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 005 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clip-rule="evenodd"/>
+              </svg>
+              <h4 class="text-uppercase m-0">Advisor</h4>
               <hr class="my-4">
-              <div class="small text-black-50"></div>
+              <div class="small text-black-50">James Davis</div>
+              <div class="small text-black-50">davis@cs.ucsc.edu</div>
+              <div class="small text-black-50">University of California, Santa Cruz</div>
             </div>
           </div>
         </div>
@@ -203,7 +189,7 @@
   {% block footer %}
   <footer class="bg-black small text-center text-white-50">
     <div class="container">
-      Copyright &copy; Your Website 2020
+      Copyright &copy; BSOE @ UCSC
     </div>
   </footer>
   {% endblock %}

@@ -1,0 +1,471 @@
+{% extends 'basis/base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    /*  
+Thanks to: Usama Tahir
+https://medium.com/@AmJustSam
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700);
+
+*{
+box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+html{
+    width: 100vw;
+    height: 100vh;
+}
+
+/* =============================
+CSS which you need for blurred box
+=============================== */
+body{
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-size: cover;
+ background-position: top;
+ background-image:url('/static/img/bg-masthead.jpg');
+ width: 100%;
+ height: 100%;
+ font-family: Arial, Helvetica;
+ letter-spacing: 0.02em;
+  font-weight: 400;
+ -webkit-font-smoothing: antialiased; 
+}
+
+.blurred-box{
+  position: relative;
+  width: 80%;
+  height: 80%;
+  background: inherit;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.blurred-box:after{
+ content: '';
+ width: 100%;
+ height: 100%;
+ background: inherit; 
+ position: absolute;
+ /*box-shadow: inset 0 0 0 200px rgba(255,255,255,0.00);*/
+ /*filter: blur(10px);*/
+}
+
+.custom-bank-manager-icon{
+  width: 100px;
+  height: 100px;
+  position: relative;
+  border-radius: 50%;
+  background-size: contain;
+  background-image: url('/static/img/bank_manager_icon.jpg');
+}
+
+.custom-info{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  /*color: #64a19d;*/
+  color: black;
+  text-shadow: 0 0 10px white;
+  opacity: 0.7;
+}
+
+input.loan-money{
+  width: 120px;
+  height: 36px;
+  opacity: 0.4;
+  border-radius: 2px;
+  /*padding: 5px 15px;*/
+  border: 2;
+  border-color: white;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+}
+
+/* =============================
+CSS which you need for anamation slider
+=============================== */
+
+.items{
+    white-space: nowrap;
+    transition: transform 1s ease-in-out;
+}
+
+.item{
+  padding: 30px 20px;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-weight: bold;
+  background-size: cover;
+  background-position: 50% 50%;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  /*
+  &:nth-child(2) {
+    color: #fff;
+  }
+  */
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="height: 100%; width: 100%;">
+    <div class="row" style="height: 10%;">
+        <div class="col-1 d-flex align-items-center justify-content-center">
+            <a href="/#design">
+                <svg class="bi bi-arrow-counterclockwise" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M12.83 6.706a5 5 0 00-7.103-3.16.5.5 0 11-.454-.892A6 6 0 112.545 5.5a.5.5 0 11.91.417 5 5 0 109.375.789z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M7.854.146a.5.5 0 00-.708 0l-2.5 2.5a.5.5 0 000 .708l2.5 2.5a.5.5 0 10.708-.708L5.707 3 7.854.854a.5.5 0 000-.708z" clip-rule="evenodd"/>
+                </svg>
+                Cancel
+            </a>
+            
+        </div>
+    </div>
+    <div class="row" style="height: 90%">
+        <div class="col d-flex justify-content-center align-items-center">
+            <div class="blurred-box" style="height: 100%;">
+                <ul class="items" style="height: 80%;">
+                    <li class="item align-self-center">
+                        <div class="row" style="height: 25%;">
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <span class="custom-bank-manager-icon"></span>
+                            </div>
+                        </div> 
+                        <div class="row" style="height: 25%;">
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <div class="custom-info">
+                                    <h1>You are a bank manager,</h1>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="row" style="height: 25%;">
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <div class="custom-info">
+                                    <h3>and you have &nbsp;</h3>
+                                </div>
+                                <div>   
+                                    <input type="text" 
+                                    name="currency-field" 
+                                    id="currency-field" 
+                                    class="loan-money" 
+                                    pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" 
+                                    value="" data-type="
+                                    currency" 
+                                    placeholder="$1,000,000.00">                    
+                                </div>
+                                <div class="custom-info">
+                                    <h3> &nbsp; for loan allocation.</h3>
+                                 </div>
+                            </div>
+                        </div>  
+                        <div class="row" style="height: 25%;">
+                        </div>  
+                    </li>
+                    <li class="item align-self-center card">
+                        <div class="row card-header"  style="height: 20%;">
+                            <div class="col">
+                                <div class="row justify-content-center" style="height: 50%;">
+                                    <div>You had two clients to apply loans at the same time. </div>
+                                </div>
+                                <div class="row justify-content-center" style="height: 50%;">
+                                    <div>The two clients' information are designed as below.</div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="row card-body"  style="height: 60%;">
+                            <div class="col-md-6 border border-dark">
+                                <div class="row justify-content-center align-items-center" style="height: 15%;">
+                                    <div>Person A</div>
+                                </div>
+                                <form action="/design/loan_allocation_design/" method="post">
+                                    {% csrf_token %}
+                                    {% for field in loan_allocation_design_form_A %}
+                                        <div class="row" style="height: 17%;">
+                                            <div class="col-md-4">
+                                                {{ field.label_tag }}
+                                            </div>
+                                            <div class="col-md-8">
+                                                {{ field }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </form>
+                            </div>  
+                            <div class="col-md-6 border border-dark">
+                                <div class="row justify-content-center align-items-center" style="height: 15%;">
+                                    <div>Person B</div>
+                                </div>
+                                <form action="/design/loan_allocation_design/" method="post">
+                                    {% csrf_token %}
+                                    {% for field in loan_allocation_design_form_B %}
+                                        <div class="row" style="height: 20%;">
+                                            <div class="col-md-4">
+                                                {{ field.label_tag }}
+                                            </div>
+                                            <div class="col-md-8">
+                                                {{ field }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </form>
+                            </div>  
+                        </div> 
+                        <div class="row card-footer" style="height: 20%;">
+                            <div>
+
+                            </div>
+                        </div>
+                    </li>
+                    <!--
+                    <li class="item mb-4"> 
+                        <div class="row">
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <div class="custom-info">
+                                    <p>You had two clients to apply <br> for loans at the same time</p>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label for="exampleInputEmail1">Person A's Name: &nbsp;&nbsp;</label>
+                                    <input type="email" 
+                                    class="form-control" 
+                                    id="exampleInputEmail1" 
+                                    aria-describedby="emailHelp" 
+                                    placeholder="Enter email"
+                                    style="width: 30%;">
+                                </div>
+                                <div class="row">
+                                    <label for="exampleInputEmail1">Person A's Gender: &nbsp;&nbsp;</label>
+                                    <input type="email" 
+                                    class="form-control" 
+                                    id="exampleInputEmail1" 
+                                    aria-describedby="emailHelp" 
+                                    placeholder="Enter email"
+                                    style="width: 30%;">
+                                </div>
+                                <div class="row">
+                                    <label for="exampleInputEmail1">Person A's Age: &nbsp;&nbsp;</label>
+                                    <input type="email" 
+                                    class="form-control" 
+                                    id="exampleInputEmail1" 
+                                    aria-describedby="emailHelp" 
+                                    placeholder="Enter email"
+                                    style="width: 30%;">
+                                </div>
+                                <div class="row">
+                                    <label for="exampleInputEmail1">Person A's Race: &nbsp;&nbsp;</label>
+                                    <input type="email" 
+                                    class="form-control" 
+                                    id="exampleInputEmail1" 
+                                    aria-describedby="emailHelp" 
+                                    placeholder="Enter email"
+                                    style="width: 30%;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row text-white">
+                                    <label for="exampleInputEmail1">Person A's Repayment Rate: &nbsp;&nbsp;</label>
+                                    <input type="email" 
+                                    class="form-control" 
+                                    id="exampleInputEmail1" 
+                                    aria-describedby="emailHelp" 
+                                    placeholder="Enter email"
+                                    style="width: 30%;">
+                                </div>
+                                <div class="row">
+                                    <label for="exampleInputEmail1">Name: &nbsp;&nbsp;</label>
+                                    <input type="email" 
+                                    class="form-control" 
+                                    id="exampleInputEmail1" 
+                                    aria-describedby="emailHelp" 
+                                    placeholder="Enter email"
+                                    style="width: 30%;">
+                                </div>
+                            </div> 
+                    </li>
+                    -->
+                </ul>
+                <div class="row">
+                    <div class="col d-flex justify-content-center align-items-center">
+                        <button id="prev-btn" class="btn btn-primary" href="" onclick="prev()">Previous</button>
+                        <button id="next-btn" class="btn btn-primary" href="" onclick="next()">Next</button>
+                    </div>
+                </div> 
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+{% block custom %}
+<!--
+    =================================
+    load src
+    =================================
+-->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/ajax/libs/modernizr/modernizr.min.js"></script>
+
+<!--
+    =================================
+    init
+    =================================
+-->
+<script>
+$(document).ready(
+    function() {
+        $('#prev-btn').hide();
+        $('#next-btn').hide();
+    }
+)
+</script>
+
+
+<!--
+    =================================
+    currency field related
+    =================================
+-->
+<script>
+$(" #currency-field ").on('change keyup', function() {
+    // do something
+    $('#next-btn').show();
+    formatCurrency($(this));
+    if( !$(this).val() ) {
+        $('#next-btn').hide();
+    }
+    else {
+        console.log(document.getElementById("currency-field").value);
+    }
+});
+
+function formatNumber(n) {
+  // format number 1000000 to 1,234,567
+  return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
+
+function formatCurrency(input, blur) {
+  // appends $ to value, validates decimal side
+  // and puts cursor back in right position.
+  
+  // get input value
+  var input_val = input.val();
+  
+  // don't validate empty input
+  if (input_val === "") { return; }
+  
+  // original length
+  var original_len = input_val.length;
+
+  // initial caret position 
+  var caret_pos = input.prop("selectionStart");
+    
+  // check for decimal
+  if (input_val.indexOf(".") >= 0) {
+
+    // get position of first decimal
+    // this prevents multiple decimals from
+    // being entered
+    var decimal_pos = input_val.indexOf(".");
+
+    // split number by decimal point
+    var left_side = input_val.substring(0, decimal_pos);
+    var right_side = input_val.substring(decimal_pos);
+
+    // add commas to left side of number
+    left_side = formatNumber(left_side);
+
+    // validate right side
+    right_side = formatNumber(right_side);
+    
+    // On blur make sure 2 numbers after decimal
+    if (blur === "blur") {
+      right_side += "00";
+    }
+    
+    // Limit decimal to only 2 digits
+    right_side = right_side.substring(0, 2);
+
+    // join number by .
+    input_val = "$" + left_side + "." + right_side;
+
+  } else {
+    // no decimal entered
+    // add commas to number
+    // remove all non-digits
+    input_val = formatNumber(input_val);
+    input_val = "$" + input_val;
+    
+    // final formatting
+    if (blur === "blur") {
+      input_val += ".00";
+    }
+  }
+  
+  // send updated string to input
+  input.val(input_val);
+
+  // put caret back in the right position
+  var updated_len = input_val.length;
+  caret_pos = updated_len - original_len + caret_pos;
+  input[0].setSelectionRange(caret_pos, caret_pos);
+}
+
+
+</script>
+
+
+<!--
+    =================================
+    animation slider related
+    =================================
+-->
+<script>
+var d = document;
+var items = d.querySelector('.items');
+var itemCount = d.querySelectorAll('.item').length;
+var scroller = d.querySelector('.scroller');
+var pos = 0;
+var transform = Modernizr.prefixed('transform');
+
+function setTransform() {
+  items.style[transform] = 'translate3d(' + (-pos * items.offsetWidth) + 'px,0,0)';
+}
+
+function prev() {
+  pos = Math.max(pos - 1, 0);
+  setTransform();
+
+  $('#next-btn').hide();
+  $('#prev-btn').hide();
+}
+
+function next() {
+  pos = Math.min(pos + 1, itemCount - 1);
+  setTransform();
+
+  $('#next-btn').hide();
+  $('#prev-btn').show();
+}
+
+window.addEventListener('resize', setTransform);
+</script>
+{% endblock %}
+
+{% endblock %}

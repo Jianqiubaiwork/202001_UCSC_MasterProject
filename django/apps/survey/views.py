@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from .forms import *
 
 # Create your views here.
-class LoanAllocationView(TemplateView):
+class LoanAllocationSurveyView(TemplateView):
     template_name = 'loan_allocation_survey.html'
 
     def get(self, request):
@@ -27,7 +27,7 @@ class LoanAllocationView(TemplateView):
         return render(request, self.template_name, context)
 
 
-class BailJudgementView(TemplateView):
+class BailJudgementSurveyView(TemplateView):
     template_name = 'bail_judgement_survey.html'
 
     def get(self, request):

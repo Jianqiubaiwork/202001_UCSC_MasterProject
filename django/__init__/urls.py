@@ -30,6 +30,7 @@ urlpatterns = [
     path("ch/", chn_lang_view, name="chn_lang"),
     path("http202/", http202_view, name="http202"),
     path("http404/", http404_view, name="http404"),
+    path("comming_soon/", comming_soon_view, name="comming_soon")
 ]
 
 if settings.DEBUG:

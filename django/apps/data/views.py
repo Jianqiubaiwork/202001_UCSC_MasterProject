@@ -1,11 +1,11 @@
 from django.views.generic import TemplateView
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 
 from apps.survey.models import *
 
 # Create your views here.
 class DataView(TemplateView):
-    template_name = 'temp.html'
+    template_name = 'data.html'
 
     def get(self, request):
         #all_loan_allocation_answer_models = LoanAllocationAnswerModel.objects.all()
@@ -14,4 +14,5 @@ class DataView(TemplateView):
         #    'all_loan_allocation_answer_models' : all_loan_allocation_answer_models,
         #    'all_bail_judgement_answer_models' : all_bail_judgement_answer_models
         }
-        return render(request, self.template_name, context)
+        #return render(request, self.template_name, context)
+        return HttpResponseRedirect('/comming_soon')

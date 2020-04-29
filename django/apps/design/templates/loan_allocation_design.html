@@ -3,7 +3,7 @@
 
 {% block style %}
 <style>
-    /*  
+/*  
 Thanks to: Usama Tahir
 https://medium.com/@AmJustSam
 */
@@ -38,25 +38,6 @@ body{
  -webkit-font-smoothing: antialiased; 
 }
 
-.blurred-box{
-  position: relative;
-  width: 80%;
-  height: 80%;
-  background: inherit;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.blurred-box:after{
- content: '';
- width: 100%;
- height: 100%;
- background: inherit; 
- position: absolute;
- /*box-shadow: inset 0 0 0 200px rgba(255,255,255,0.00);*/
- /*filter: blur(10px);*/
-}
-
 .custom-bank-manager-icon{
   width: 100px;
   height: 100px;
@@ -75,20 +56,11 @@ body{
   opacity: 0.7;
 }
 
-input.loan-money{
-  width: 120px;
-  height: 36px;
-  opacity: 0.4;
-  border-radius: 2px;
-  /*padding: 5px 15px;*/
-  border: 2;
-  border-color: white;
-}
-
 .card {
     background-color: rgba(255, 255, 255, 0.6);
     position: absolute;
 }
+
 
 /* =============================
 CSS which you need for anamation slider
@@ -116,6 +88,16 @@ CSS which you need for anamation slider
   }
   */
 }
+
+#id_money_in_total{
+  width: 120px;
+  height: 36px;
+  opacity: 0.4;
+  border-radius: 2px;
+  /*padding: 5px 15px;*/
+  border: 2;
+  border-color: white;
+}
 </style>
 {% endblock %}
 
@@ -130,14 +112,16 @@ CSS which you need for anamation slider
                 </svg>
                 Cancel
             </a>
-            
         </div>
     </div>
-    <div class="row" style="height: 90%">
-        <div class="col d-flex justify-content-center align-items-center">
-            <div class="blurred-box" style="height: 100%;">
-                <ul class="items" style="height: 80%;">
-                    <li class="item align-self-center">
+    <div class="row" style="height: 90%;">
+        <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="false" style="width: 100%;">
+            <div class="row" style="height: 10%;">
+            </div>
+            <div class="carousel-inner d-flex justify-content-center align-items-center" style="height: 90%;">
+                <form action="/design/loan_allocation_design/" method="post" style="width: 100%; height: 100%;">
+                    {% csrf_token %}
+                    <div class="carousel-item active" style="height: 100%;">
                         <div class="row" style="height: 25%;">
                             <div class="col d-flex justify-content-center align-items-center">
                                 <span class="custom-bank-manager-icon"></span>
@@ -153,17 +137,10 @@ CSS which you need for anamation slider
                         <div class="row" style="height: 25%;">
                             <div class="col d-flex justify-content-center align-items-center">
                                 <div class="custom-info">
-                                    <h3>and you have &nbsp;</h3>
+                                    <h3>and you have &nbsp;$</h3>
                                 </div>
-                                <div>   
-                                    <input type="text" 
-                                    name="currency-field" 
-                                    id="currency-field" 
-                                    class="loan-money" 
-                                    pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" 
-                                    value="" data-type="
-                                    currency" 
-                                    placeholder="$1,000,000.00">                    
+                                <div>
+                                    {{ loan_allocation_design_form.money_in_total }}
                                 </div>
                                 <div class="custom-info">
                                     <h3> &nbsp; for loan allocation.</h3>
@@ -172,9 +149,9 @@ CSS which you need for anamation slider
                         </div>  
                         <div class="row" style="height: 25%;">
                         </div>  
-                    </li>
-                    <li class="item align-self-center card">
-                        <div class="row card-header"  style="height: 20%;">
+                    </div>
+                    <div class="carousel-item card" style="height: 100%;">
+                        <div class="row card-header"  style="height: 10%;">
                             <div class="col">
                                 <div class="row justify-content-center" style="height: 50%;">
                                     <div>You had two clients to apply loans at the same time. </div>
@@ -183,134 +160,172 @@ CSS which you need for anamation slider
                                     <div>The two clients' information are designed as below.</div>
                                 </div>
                             </div>
-                        </div> 
-                        <div class="row card-body"  style="height: 60%;">
-                            <div class="col-md-6 border border-dark">
-                                <div class="row justify-content-center align-items-center" style="height: 15%;">
-                                    <div>Person A</div>
+                        </div>
+                        <div class="row card-body" style="height: 70%;">
+                                <div class="row" style="height: 10%; width: 100%;">
                                 </div>
-                                <form action="/design/loan_allocation_design/" method="post">
-                                    {% csrf_token %}
-                                    {% for field in loan_allocation_design_form_A %}
-                                        <div class="row" style="height: 17%;">
-                                            <div class="col-md-4">
-                                                {{ field.label_tag }}
-                                            </div>
-                                            <div class="col-md-8">
-                                                {{ field }}
+                                <div class="row" style="height: 90%; width: 100%;">
+                                    <div class="col-6 border border-dark">
+                                        <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                            <div> 
+                                                Person A
                                             </div>
                                         </div>
-                                    {% endfor %}
-                                </form>
-                            </div>  
-                            <div class="col-md-6 border border-dark">
-                                <div class="row justify-content-center align-items-center" style="height: 15%;">
-                                    <div>Person B</div>
-                                </div>
-                                <form action="/design/loan_allocation_design/" method="post">
-                                    {% csrf_token %}
-                                    {% for field in loan_allocation_design_form_B %}
-                                        <div class="row" style="height: 20%;">
-                                            <div class="col-md-4">
-                                                {{ field.label_tag }}
+                                        <div class="row" style="height: 90%;">
+                                            <div class="col-6">
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.name_A.label }} 
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.race_A.label }} 
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.gender_A.label }} 
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.age_A.label }} 
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.rate_A.label }} 
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-8">
-                                                {{ field }}
+                                            <div class="col-6">
+                                                <div class="row  d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.name_A }}
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.race_A }}
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.gender_A }}
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.age_A }}
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.rate_A }}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    {% endfor %}
-                                </form>
-                            </div>  
+                                    </div>
+                                    <div class="col-6 border border-dark" style="height: 100%;">
+                                        <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                            <div> 
+                                                Person B
+                                            </div>
+                                        </div>
+                                        <div class="row" style="height: 90%;">
+                                            <div class="col-6">
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.name_B.label }} 
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.race_B.label }} 
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.gender_B.label }} 
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.age_B.label }} 
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.rate_B.label }} 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row  d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.name_B }}
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.race_B }}
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.gender_B }}
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.age_B }}
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                                                    <div> 
+                                                        {{ loan_allocation_design_form.rate_B }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div> 
                         <div class="row card-footer" style="height: 20%;">
-                            <div>
-
+                            <div class="col-12">
+                                <div class="row d-flex justify-content-center">
+                                    <div class="w-75">
+                                        <input type="range" class="custom-range" id="slideBar" min="0" max="1000">
+                                      </div>
+                                      <span class="font-weight-bold ml-2 moneyA"></span>&nbsp; <div>:</div> 
+                                      <span class="font-weight-bold ml-2 moneyB"></span>
+                                </div>
+                                <div class="row d-flex justify-content-center">
+                                    <input class="btn btn-primary" type="submit" value="Submit">
+                                </div>
                             </div>
                         </div>
-                    </li>
-                    <!--
-                    <li class="item mb-4"> 
-                        <div class="row">
-                            <div class="col d-flex justify-content-center align-items-center">
-                                <div class="custom-info">
-                                    <p>You had two clients to apply <br> for loans at the same time</p>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <label for="exampleInputEmail1">Person A's Name: &nbsp;&nbsp;</label>
-                                    <input type="email" 
-                                    class="form-control" 
-                                    id="exampleInputEmail1" 
-                                    aria-describedby="emailHelp" 
-                                    placeholder="Enter email"
-                                    style="width: 30%;">
-                                </div>
-                                <div class="row">
-                                    <label for="exampleInputEmail1">Person A's Gender: &nbsp;&nbsp;</label>
-                                    <input type="email" 
-                                    class="form-control" 
-                                    id="exampleInputEmail1" 
-                                    aria-describedby="emailHelp" 
-                                    placeholder="Enter email"
-                                    style="width: 30%;">
-                                </div>
-                                <div class="row">
-                                    <label for="exampleInputEmail1">Person A's Age: &nbsp;&nbsp;</label>
-                                    <input type="email" 
-                                    class="form-control" 
-                                    id="exampleInputEmail1" 
-                                    aria-describedby="emailHelp" 
-                                    placeholder="Enter email"
-                                    style="width: 30%;">
-                                </div>
-                                <div class="row">
-                                    <label for="exampleInputEmail1">Person A's Race: &nbsp;&nbsp;</label>
-                                    <input type="email" 
-                                    class="form-control" 
-                                    id="exampleInputEmail1" 
-                                    aria-describedby="emailHelp" 
-                                    placeholder="Enter email"
-                                    style="width: 30%;">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row text-white">
-                                    <label for="exampleInputEmail1">Person A's Repayment Rate: &nbsp;&nbsp;</label>
-                                    <input type="email" 
-                                    class="form-control" 
-                                    id="exampleInputEmail1" 
-                                    aria-describedby="emailHelp" 
-                                    placeholder="Enter email"
-                                    style="width: 30%;">
-                                </div>
-                                <div class="row">
-                                    <label for="exampleInputEmail1">Name: &nbsp;&nbsp;</label>
-                                    <input type="email" 
-                                    class="form-control" 
-                                    id="exampleInputEmail1" 
-                                    aria-describedby="emailHelp" 
-                                    placeholder="Enter email"
-                                    style="width: 30%;">
-                                </div>
-                            </div> 
-                    </li>
-                    -->
-                </ul>
-                <div class="row">
-                    <div class="col d-flex justify-content-center align-items-center">
-                        <button id="prev-btn" class="btn btn-primary" href="" onclick="prev()">Previous</button>
-                        <button id="next-btn" class="btn btn-primary" href="" onclick="next()">Next</button>
                     </div>
-                </div> 
+                </form>
+                
             </div>
-            
+            <a class="carousel-control carousel-control-prev btn btn-primary" 
+                href="#" role="button" data-slide="prev"
+                style="height: 10%; width: 50%;">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control carousel-control-next btn btn-primary" 
+                href="#" role="button" data-slide="next"
+                style="height: 10%; width: 50%;">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
 </div>
-
 
 {% block custom %}
 <!--
@@ -319,153 +334,40 @@ CSS which you need for anamation slider
     =================================
 -->
 <script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="/static/ajax/libs/modernizr/modernizr.min.js"></script>
 
-<!--
-    =================================
-    init
-    =================================
--->
 <script>
-$(document).ready(
-    function() {
-        $('#prev-btn').hide();
-        $('#next-btn').hide();
-    }
-)
+const $moneyTotal = $('#id_money_in_total');
+const $moneyA = $('.moneyA');
+const $moneyB = $('.moneyB');
+const $slideBar = $('#slideBar');
+
+$(document).ready(function() {
+    $moneyA.html($slideBar.val());
+    $slideBar.on('input change', () => {
+        $moneyA.html($slideBar.val());
+        $moneyB.html($moneyTotal.val() - $slideBar.val());
+    });
+});
 </script>
 
-
-<!--
-    =================================
-    currency field related
-    =================================
--->
 <script>
-$(" #currency-field ").on('change keyup', function() {
-    // do something
-    $('#next-btn').show();
-    formatCurrency($(this));
+    $moneyTotal.on('change keyup', function() {
     if( !$(this).val() ) {
-        $('#next-btn').hide();
+        $(".carousel-control").attr("href", "#");
     }
     else {
-        console.log(document.getElementById("currency-field").value);
+        //console.log($(this).val());
+        //console.log($("#slideBar"));
+        $("#slideBar").attr("max", $(this).val());
+        $moneyA.html($slideBar.val());
+        $moneyB.html($moneyTotal.val() - $slideBar.val());
+        $(".carousel-control").attr("href", "#carouselControls");
     }
 });
-
-function formatNumber(n) {
-  // format number 1000000 to 1,234,567
-  return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-}
-
-
-function formatCurrency(input, blur) {
-  // appends $ to value, validates decimal side
-  // and puts cursor back in right position.
-  
-  // get input value
-  var input_val = input.val();
-  
-  // don't validate empty input
-  if (input_val === "") { return; }
-  
-  // original length
-  var original_len = input_val.length;
-
-  // initial caret position 
-  var caret_pos = input.prop("selectionStart");
-    
-  // check for decimal
-  if (input_val.indexOf(".") >= 0) {
-
-    // get position of first decimal
-    // this prevents multiple decimals from
-    // being entered
-    var decimal_pos = input_val.indexOf(".");
-
-    // split number by decimal point
-    var left_side = input_val.substring(0, decimal_pos);
-    var right_side = input_val.substring(decimal_pos);
-
-    // add commas to left side of number
-    left_side = formatNumber(left_side);
-
-    // validate right side
-    right_side = formatNumber(right_side);
-    
-    // On blur make sure 2 numbers after decimal
-    if (blur === "blur") {
-      right_side += "00";
-    }
-    
-    // Limit decimal to only 2 digits
-    right_side = right_side.substring(0, 2);
-
-    // join number by .
-    input_val = "$" + left_side + "." + right_side;
-
-  } else {
-    // no decimal entered
-    // add commas to number
-    // remove all non-digits
-    input_val = formatNumber(input_val);
-    input_val = "$" + input_val;
-    
-    // final formatting
-    if (blur === "blur") {
-      input_val += ".00";
-    }
-  }
-  
-  // send updated string to input
-  input.val(input_val);
-
-  // put caret back in the right position
-  var updated_len = input_val.length;
-  caret_pos = updated_len - original_len + caret_pos;
-  input[0].setSelectionRange(caret_pos, caret_pos);
-}
-
-
 </script>
 
-
-<!--
-    =================================
-    animation slider related
-    =================================
--->
-<script>
-var d = document;
-var items = d.querySelector('.items');
-var itemCount = d.querySelectorAll('.item').length;
-var scroller = d.querySelector('.scroller');
-var pos = 0;
-var transform = Modernizr.prefixed('transform');
-
-function setTransform() {
-  items.style[transform] = 'translate3d(' + (-pos * items.offsetWidth) + 'px,0,0)';
-}
-
-function prev() {
-  pos = Math.max(pos - 1, 0);
-  setTransform();
-
-  $('#next-btn').hide();
-  $('#prev-btn').hide();
-}
-
-function next() {
-  pos = Math.min(pos + 1, itemCount - 1);
-  setTransform();
-
-  $('#next-btn').hide();
-  $('#prev-btn').show();
-}
-
-window.addEventListener('resize', setTransform);
-</script>
 {% endblock %}
 
 {% endblock %}

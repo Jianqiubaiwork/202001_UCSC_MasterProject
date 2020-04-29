@@ -20,3 +20,7 @@ def http202_view(request):
 def http404_view(request):
     context = {}
     return render(request, 'http/http404.html', context)
+
+def comming_soon_view(request):
+    context = {}
+    return render(request, 'basis/comming_soon.html', context)

@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class LoanAllocationDesignModel(models.Model):
 
+    # ========== Static List ========== #
     GENDER_LIST = [
         ('Male', 'Male'),
         ('Female', 'Female'),
@@ -18,19 +19,42 @@ class LoanAllocationDesignModel(models.Model):
         ('White', 'White')
     ]
 
+    # ========== Variabls ========== #
+    # money
+    money_in_total = models.IntegerField()
 
-    name = models.CharField(null=True, blank=True, max_length=100)
-    gender = models.CharField(
+    # person A
+    name_A = models.CharField(null=True, blank=True, max_length=100)
+    gender_A = models.CharField(
         #choices=GENDER_LIST,
         null=True,
         blank=True,
         max_length=100
     )
-    race = models.CharField(
+    race_A = models.CharField(
         #choices=RACE_LIST,
         null=True,
         blank=True,
         max_length=100
     )
-    age = models.IntegerField()
-    rate = models.IntegerField()
+    age_A = models.IntegerField()
+    rate_A = models.IntegerField()
+    money_A = models.IntegerField()
+
+    # person B
+    name_B = models.CharField(null=True, blank=True, max_length=100)
+    gender_B = models.CharField(
+        #choices=GENDER_LIST,
+        null=True,
+        blank=True,
+        max_length=100
+    )
+    race_B = models.CharField(
+        #choices=RACE_LIST,
+        null=True,
+        blank=True,
+        max_length=100
+    )
+    age_B = models.IntegerField()
+    rate_B = models.IntegerField()
+    money_B = models.IntegerField()

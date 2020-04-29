@@ -8,30 +8,39 @@ class LoanAllocationDesignView(TemplateView):
     template_name = 'loan_allocation_design.html'
 
     def get(self, request):
-        loan_allocation_design_form_A = LoanAllocationDesignForm()
-        loan_allocation_design_form_B = LoanAllocationDesignForm()
+        loan_allocation_design_form = LoanAllocationDesignForm()
+        #loan_allocation_design_form_A = LoanAllocationDesignForm()
+        #loan_allocation_design_form_B = LoanAllocationDesignForm()
         context = {
-            'loan_allocation_design_form_A' : loan_allocation_design_form_A,
-            'loan_allocation_design_form_B' : loan_allocation_design_form_B
+            'loan_allocation_design_form' : loan_allocation_design_form,
+            #'loan_allocation_design_form_A' : loan_allocation_design_form_A,
+            #'loan_allocation_design_form_B' : loan_allocation_design_form_B
         }
         return render(request, self.template_name, context)
 
     def post(self, request):
-        loan_allocation_design_form_A = LoanAllocationDesignForm(request.POST)
-        loan_allocation_design_form_B = LoanAllocationDesignForm(request.POST)
-        if loan_allocation_design_form_A.is_valid():
-            loan_allocation_design_form_A.save()
+        loan_allocation_design_form = LoanAllocationDesignForm()
+        if loan_allocation_design_form.is_valid():
+            loan_allocation_design_form.save()
             return HttpResponseRedirect("/http202/")
         else:
-            print(loan_allocation_design_form_A.errors)
-        if loan_allocation_design_form_B.is_valid():
-            loan_allocation_design_form_B.save()
-            return HttpResponseRedirect("/http202/")
-        else:
-            print(loan_allocation_design_form_B.errors)
+            print(loan_allocation_design_form.errors)
+        #loan_allocation_design_form_A = LoanAllocationDesignForm(request.POST)
+        #loan_allocation_design_form_B = LoanAllocationDesignForm(request.POST)
+        #if loan_allocation_design_form_A.is_valid():
+        #    loan_allocation_design_form_A.save()
+        #    return HttpResponseRedirect("/http202/")
+        #else:
+        #    print(loan_allocation_design_form_A.errors)
+        #if loan_allocation_design_form_B.is_valid():
+        #    loan_allocation_design_form_B.save()
+        #    return HttpResponseRedirect("/http202/")
+        #else:
+        #    print(loan_allocation_design_form_B.errors)
         context = {
-            'loan_allocation_design_form_A' : loan_allocation_design_form_A,
-            'loan_allocation_design_form_B' : loan_allocation_design_form_B
+            'loan_allocation_design_form' : loan_allocation_design_form,
+            #'loan_allocation_design_form_A' : loan_allocation_design_form_A,
+            #'loan_allocation_design_form_B' : loan_allocation_design_form_B
         }
         return render(request, self.template_name, context)
 

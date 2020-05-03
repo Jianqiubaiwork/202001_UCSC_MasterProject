@@ -58,3 +58,7 @@ class LoanAllocationDesignModel(models.Model):
     age_B = models.IntegerField()
     rate_B = models.IntegerField()
     money_B = models.IntegerField()
+
+
+class BailJudgementDesignModel(models.Model):
+    name = models.CharField(max_length=36)

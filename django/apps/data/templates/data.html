@@ -24,24 +24,21 @@
                             <th>1b</th>
                             <th>1c</th>
                             <th>2a</th>
-                            <th>2d</th>
-                            <th>2c</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in all_loan_allocation_answer_models %}
+                        {% for item in all_loan_allocation_design_models %}
                         <tr> 
                             <td>{{ item.id }}</td>
-                            <td>{{ item.one_one_score }}/9</td>
-                            <td>{{ item.one_two_score }}/9</td>
-                            <td>{{ item.one_three_score }}/9</td>
-                            <td>{{ item.two_one_score }}/9</td>
-                            <td>{{ item.two_two_score }}/9</td>
-                            <td>{{ item.two_three_score }}/9</td>
+                            <td>{{ item.name_A }}/9</td>
+                            <td>{{ item.race_A }}/9</td>
+                            <td>{{ item.gender_A }}/9</td>
+                            <td>{{ item.rate_A }}/9</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+                <!--
                 <table id="bailJudgementTable" class="tab-pane fade in active table">
                     <thead>
                         <tr>
@@ -72,6 +69,7 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                -->
             </div>
             
         </div>

@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ScenariosConfig(AppConfig):
+class SurveyConfig(AppConfig):
     name = 'survey'

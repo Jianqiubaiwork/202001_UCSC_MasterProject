@@ -40,10 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # own
-    'django_createsuperuser',
-    'apps.design',
     'apps.survey',
-    'apps.data'
+    #'django_createsuperuser',
+    #'apps.design',
+    #'apps.data'
 ]
 
 MIDDLEWARE = [
@@ -96,6 +96,7 @@ DATABASES = {
     }
 }
 
+'''
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -106,9 +107,9 @@ CACHES = {
     }
 }
 
-
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+'''
 
 
 # Password validation
@@ -153,5 +154,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "staticfiles"),  
 )
 
-DATA_URL = '/data/'
-DATA_ROOT = os.environ.get("DATA_ROOT")
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

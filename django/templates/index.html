@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Custom Style -->
+{% block custom_style %}
+<style>
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.image-box:hover .image {
+  opacity: 0.3;
+}
+
+.image-box:hover .middle {
+  opacity: 1;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="jumbotron" style="height: 15%; padding: 1rem 2rem; margin-bottom: 1em;">
+    <h1>Do you think this model is fair?</h1>
+    <p>A platform for investigating fair machine learning models under certain scenarios.</p>
+  </div>
+  <div class="container-fluid" style="width: 100%; height: 80%;">
+    <div class="row" style="height: 100%;">
+      <div class="col-lg-6">
+        <div class="card h-100" style="background-color: #e9ecef;">
+          <div class="card-header row" 
+          style="margin-left: 0px; margin-right: 0px; margin-top: 5px; margin-bottom: 5px;">
+            <h5 class="one">Single-Model Scenario</h5>
+            <button class="btn btn-sm btn-outline-success ml-auto" 
+            data-toggle="modal" data-target="#importSingleModelScenario">Import</button>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="importSingleModelScenario" tabindex="-1" role="dialog" aria-labelledby="importSingleModelScenarioLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="importSingleModelScenarioLabel">Single-Model</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  TODO
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body image-box">
+            <img src="/static/imgs/bail-judgement.jpg" class="image">
+            <div class="middle">
+              <div>
+                <h4>Bail Judgement</h4>
+      
+                  <a href="/survey/bail_judgement_survey">
+                    <button class="btn btn-outline-secondary">
+                      Goto Survey
+                    </button>
+                  </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card h-100" style="background-color: #e9ecef;">
+          <div class="card-header row" 
+          style="margin-left: 0px; margin-right: 0px; margin-top: 5px; margin-bottom: 5px;">
+            <h5 class="one">Paired-Models Scenario</h5>
+            <button class="btn btn-sm btn-outline-success ml-auto" 
+            data-toggle="modal" data-target="#importPairedModelsScenario">Import</button>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="importPairedModelsScenario" tabindex="-1" role="dialog" aria-labelledby="importPairedModelsScenarioLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="importPairedModelsScenarioLabel">Paired-Models</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  TODO
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body image-box">
+            <img src="/static/imgs/loan-allocation.jpg" class="image">
+            <div class="middle">
+              <div>
+                <h4>Loan Allocation</h4>
+                <a href="/survey/loan_allocation_survey">
+                  <button class="btn btn-outline-secondary">
+                    Goto Survey
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

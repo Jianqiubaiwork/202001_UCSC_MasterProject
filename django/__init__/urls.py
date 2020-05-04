@@ -23,16 +23,16 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name="home"),
-    path('design/', include('apps.design.urls')),
     path('survey/', include('apps.survey.urls')),
-    path('data/', include('apps.data.urls')),
-    path("en/", eng_lang_view, name="eng_lang"),
-    path("ch/", chn_lang_view, name="chn_lang"),
-    path("http202/", http202_view, name="http202"),
-    path("http404/", http404_view, name="http404"),
-    path("comming_soon/", comming_soon_view, name="comming_soon")
+    #path('design/', include('apps.design.urls')),
+    #path('data/', include('apps.data.urls')),
+    #path("en/", eng_lang_view, name="eng_lang"),
+    #path("ch/", chn_lang_view, name="chn_lang"),
+    #path("http202/", http202_view, name="http202"),
+    #path("http404/", http404_view, name="http404"),
+    #path("comming_soon/", comming_soon_view, name="comming_soon")
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

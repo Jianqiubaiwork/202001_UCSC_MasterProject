@@ -1,8 +1,8 @@
 version: '3.7'
 
 services:
-  django_dev:
-    container_name: django_dev
+  web_dev:
+    container_name: web_dev
     restart: always 
     build: ./django
     command: gunicorn __init__.wsgi:application --bind 0.0.0.0:2000
@@ -16,10 +16,10 @@ services:
     env_file:
       - ./.env.dev
     depends_on: 
-      - postgres_dev
-      - redis_dev
+      - db_dev
+      # - redis_dev
 
-  postgres_dev:
+  db_dev:
     restart: always
     image: postgres:latest
     volumes:
@@ -29,11 +29,11 @@ services:
       - POSTGRES_PASSWORD=learning
       - POSTGRES_DB=WEB_DB
 
-  redis_dev:
-    restart: always
-    image: redis:latest
-    expose: 
-      - "6379"
+  #redis_dev:
+  #  restart: always
+  #  image: redis:latest
+  #  expose: 
+  #    - "6379"
 
 volumes:
     data_volume:

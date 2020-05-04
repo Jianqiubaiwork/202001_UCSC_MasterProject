@@ -9,6 +9,8 @@
 # data
 data/*
 media/*
+django/media/*
+!django/media/README.md
 
 # python venv
 *_venv

@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block custom_style %}
+<style>
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.image-box:hover .image {
+  opacity: 0.3;
+}
+
+.image-box:hover .middle {
+  opacity: 1;
+}
+
+/* Container holding the image and the text */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Bottom right text */
+.text-block {
+  position: relative;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card w-100 h-100">
+    <div class="card-header text-center" style="height: 10%;">
+      {% block dataset_name %}
+      <h3>TEMPLATE</h3>
+      {% endblock %}
+    </div>
+    <div class="card-body" style="height: 80%;">
+        <div class="row m-0 p-2" style="height: 100%;">
+            <div class="col-12">
+                <div class="row h-100">
+                    <div class="col-2 d-flex justify-content-center align-self-center" style="height: 100%;">
+                        <div class="row m-0 p-0 w-100 h-100">
+                            <div class="col-12 m-0 p-0 d-flex justify-content-center align-self-center">
+                                <p>
+                                    Feature 1
+                                </p>
+                            </div>
+                            <div class="col-12 m-0 p-0 d-flex justify-content-center align-self-center">
+                                <p>
+                                    Feature 2
+                                </p>
+                            </div>
+                            <div class="col-12 m-0 p-0 d-flex justify-content-center align-self-center">
+                                <p>
+                                    Feature 3
+                                </p>
+                            </div>
+                            <div class="col-12 m-0 p-0 d-flex justify-content-center align-self-center">
+                                <p>
+                                    Feature 4
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8 d-flex justify-content-center align-self-center " style="height: 100%;">
+                        <div class=" d-flex justify-content-center align-self-center image-box">
+                            <img src="/static/imgs/bail-judgement-detail.jpg" class="image">
+                            <div class="middle">
+                                <div> <h4>Detail Hover</h4></div>
+                            </div>  
+                        </div>
+                        
+                    </div>
+                    <div class="col-2 d-flex justify-content-center align-self-center" style="height: 100%;">
+                        <div class="row m-0 p-0 w-100 h-100">
+                            <div class="col-12 m-0 p-0 d-flex justify-content-center align-self-center">
+                                <p>
+                                    Feature 5
+                                </p>
+                            </div>
+                            <div class="col-12 m-0 p-0 d-flex justify-content-center align-self-center">
+                                <p>
+                                    Feature 6
+                                </p>
+                            </div>
+                            <div class="col-12 m-0 p-0 d-flex justify-content-center align-self-center">
+                                <p>
+                                    Feature 7
+                                </p>
+                            </div>
+                            <div class="col-12 m-0 p-0 d-flex justify-content-center align-self-center">
+                                <p>
+                                    Feature 8
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer" style="height: 10%;">
+        <div class="row m-0" style="height: 100%;">
+            <div class="col-2">
+              <button class="btn btn-success">
+                <a>
+                  Previous
+                </a>
+              </button>
+            </div>
+            <div class="col-8">
+            </div>
+            <div class="col-2">
+              <button class="btn btn-success float-right">
+                <a class="">
+                  Next
+                </a>
+              </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

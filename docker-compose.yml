@@ -8,26 +8,27 @@ services:
     command: gunicorn __init__.wsgi:application --bind 0.0.0.0:2000
     volumes:
       - ./django/:/usr/src/django
-      - data_volume:/usr/src/data
+      # - data_volume:/usr/src/data
+      - media_volume:/usr/src/django/media
     environment: 
       - DATA_ROOT=/usr/src/data
     ports:
       - 2000:2000
     env_file:
       - ./.env.dev
-    depends_on: 
-      - db_dev
+    #depends_on: 
+      # - db_dev
       # - redis_dev
 
-  db_dev:
-    restart: always
-    image: postgres:latest
-    volumes:
-      - data_volume:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=machine
-      - POSTGRES_PASSWORD=learning
-      - POSTGRES_DB=WEB_DB
+  # db_dev:
+    # restart: always
+    #image: postgres:latest
+    # volumes:
+      # - data_volume:/var/lib/postgresql/data/
+    #environment:
+    #  - POSTGRES_USER=machine
+    #  - POSTGRES_PASSWORD=learning
+    #  - POSTGRES_DB=WEB_DB
 
   #redis_dev:
   #  restart: always
@@ -36,4 +37,10 @@ services:
   #    - "6379"
 
 volumes:
-    data_volume:
+    # data_volume:
+    media_volume:
+      driver: local
+      driver_opts: 
+        type : none
+        device: /Users/jianqiubai/Desktop/PROJECTS/ml-fairness-web-docker/django/media
+        o: bind

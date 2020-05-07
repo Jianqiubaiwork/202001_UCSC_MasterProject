@@ -31,69 +31,305 @@
 .image-box:hover .middle {
   opacity: 1;
 }
+
+/* Container holding the image and the text */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Bottom right text */
+.text-block {
+  position: relative;
+}
+
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="card w-100 h-100">
-    <div class="card-header" style="height: 10%;">
-
+    <div class="card-header text-center" style="height: 10%;">
+      {% block dataset_name %}
+      <h3>TEMPLATE</h3>
+      {% endblock %}
     </div>
     <div class="card-body" style="height: 80%;">
         <div class="row m-0 p-2" style="height: 100%;">
             <div class="col-6 border">
                 <div class="row h-100">
-                    <div class="col-4 d-flex justify-content-center align-self-center" style="background-image: url('/static/imgs/message-circle.svg');">Column</div>
                     <div class="col-4 d-flex justify-content-center align-self-center">
-                        <img src="/static/imgs/message-circle.svg" style="width: 100%; height: auto;" class="m-0 p-0">
+                      <div class="container p-0">
+                        <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto;" class="m-0 p-0 rotate-sm-l-45">
+                        <div class="text-block">
+                          <p>
+                            {% block feature_A1 %}
+                            Feature 1
+                            {% endblock %}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-4 d-flex justify-content-center align-self-center">Column</div>
-                    <div class="col-3 d-flex justify-content-center align-self-center">Column</div>
-                    <div class="col-6 d-flex align-self-center" style="height: 40%;">
+                    <div class="col-4 d-flex justify-content-center align-self-center">
+                      
+                      <div class="container p-0">
+                        <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto;" class="m-0 p-0">
+                        <div class="text-block">
+                          <p>
+                            {% block feature_A2 %}
+                            Feature 2
+                            {% endblock %}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center align-self-center">
+                      
+                      <div class="container p-0">
+                        <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto;" class="m-0 p-0 rotate-sm-r-45">
+                        <div class="text-block">
+                          <p>
+                            {% block feature_A3 %}
+                            Feature 3
+                            {% endblock %}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-3 d-flex justify-content-center align-self-center">
+                      
+                      <div class="container p-0">
+                        <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto;" class="m-0 p-0 rotate-sm-l-90">
+                        <div class="text-block">
+                          <p>
+                            {% block feature_A4 %}
+                            Feature 4
+                            {% endblock %}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6 d-flex align-self-center" style="height: 30%;">
+                      {% block image_A %}
                         <div class="container h-100 border d-flex justify-content-center align-items-center">
-                            Data Box 1
+                            
+                            A
+                           
+                        </div>
+                        {% endblock %}
+                    </div>
+                    <div class="col-3 d-flex justify-content-center align-self-center">
+                      <div class="container p-0">
+                        <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto;" class="m-0 p-0 rotate-sm-r-90">
+                        <div class="text-block">
+                          <p>
+                            {% block feature_A5 %}
+                            Feature 5
+                            {% endblock %}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center align-self-center">
+                      
+                      <div class="container p-0">
+                        <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto; transform: rotate(225deg);" class="m-0 p-0">
+                        <div class="text-block">
+                          <p>
+                            {% block feature_A6 %}
+                            Feature 6
+                            {% endblock %}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center align-self-center">
+                      
+                        <div class="container p-0">
+                          <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto; transform: rotate(180deg);" class="m-0 p-0">
+                          <div class="text-block">
+                            <p>
+                            {% block feature_A7 %}
+                            Feature 7
+                            {% endblock %}
+                            </p>
+                          </div>
                         </div>
                     </div>
-                    <div class="col-3 d-flex justify-content-center align-self-center">Column</div>
-                    <div class="col-4 d-flex justify-content-center align-self-center">Column</div>
                     <div class="col-4 d-flex justify-content-center align-self-center">
-                        <img src="/static/imgs/chatbox-outline.svg" style="width: 100%; height: auto;" class="m-0 p-0">
+                      
+                      <div class="container p-0">
+                        <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto; transform: rotate(135deg);" class="m-0 p-0">
+                        <div class="text-block">
+                          <p>
+                            {% block feature_A8 %}
+                            Feature 8
+                            {% endblock %}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-4 d-flex justify-content-center align-self-center">Column</div>
-                  </div>
+                </div>
             </div>
-            <div class="col-6 image-box">
-                <img src="/static/imgs/loan-allocation.jpg" class="image">
-                <div class="middle">
-                    <div>
-                      <h4>Loan Allocation</h4>
-                      <a href="/survey/loan_allocation_survey">
-                        <button class="btn btn-outline-secondary">
-                          Goto Survey
-                        </button>
-                      </a>
+            <div class="col-6 border">
+              <div class="row h-100">
+                  <div class="col-4 d-flex justify-content-center align-self-center">
+                    <div class="container p-0">
+                      <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto;" class="m-0 p-0 rotate-sm-l-45">
+                      <div class="text-block">
+                        <p>
+                          {% block feature_B1 %}
+                            Feature 1
+                            {% endblock %}
+                        </p>
+                      </div>
                     </div>
                   </div>
-            </div>
+                  <div class="col-4 d-flex justify-content-center align-self-center">
+                    
+                    <div class="container p-0">
+                      <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto;" class="m-0 p-0">
+                      <div class="text-block">
+                        <p>
+                          {% block feature_B2 %}
+                            Feature 2
+                            {% endblock %}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4 d-flex justify-content-center align-self-center">
+                    
+                    <div class="container p-0">
+                      <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto;" class="m-0 p-0 rotate-sm-r-45">
+                      <div class="text-block">
+                        <p>
+                          {% block feature_B3 %}
+                            Feature 3
+                          {% endblock %}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-3 d-flex justify-content-center align-self-center">
+                    
+                    <div class="container p-0">
+                      <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto;" class="m-0 p-0 rotate-sm-l-90">
+                      <div class="text-block">
+                        <p>
+                          {% block feature_B4 %}
+                            Feature 4
+                          {% endblock %}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 d-flex align-self-center" style="height: 30%;">
+                      {% block image_B %}
+                      <div class="container h-100 border d-flex justify-content-center align-items-center"
+                      style="">
+                      
+                      B
+                      
+                      </div>
+                      {% endblock %}
+                  </div>
+                  <div class="col-3 d-flex justify-content-center align-self-center">
+                    <div class="container p-0">
+                      <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto;" class="m-0 p-0 rotate-sm-r-90">
+                      <div class="text-block">
+                        <p>
+                          {% block feature_B5 %}
+                            Feature 5
+                          {% endblock %}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4 d-flex justify-content-center align-self-center">
+                    
+                    <div class="container p-0">
+                      <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto; transform: rotate(225deg);" class="m-0 p-0">
+                      <div class="text-block">
+                        <p>
+                          {% block feature_B6 %}
+                            Feature 6
+                          {% endblock %}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4 d-flex justify-content-center align-self-center">
+                    
+                      <div class="container p-0">
+                        <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto; transform: rotate(180deg);" class="m-0 p-0">
+                        <div class="text-block">
+                          <p>
+                            {% block feature_B7 %}
+                            Feature 7
+                            {% endblock %}
+                          </p>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-4 d-flex justify-content-center align-self-center">
+                    
+                    <div class="container p-0">
+                      <img src="/static/imgs/chatbox-outline.svg" style="width: 30%; height: auto; transform: rotate(135deg);" class="m-0 p-0">
+                      <div class="text-block">
+                        <p>
+                          {% block feature_B8 %}
+                            Feature 8
+                          {% endblock %}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
         </div>
     </div>
     <div class="card-footer" style="height: 10%;">
         <div class="row m-0" style="height: 100%;">
             <div class="col-2">
-
+              <button class="btn btn-success">
+                <a>
+                  Previous
+                </a>
+              </button>
             </div>
             <div class="col-8 d-flex justify-content-center align-self-center">
-                <div class="form-check form-check-inline mr-4" style="">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">Model 1</label>
-                  </div>
-                  <div class="form-check form-check-inline ml-4">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">Model 2</label>
-                  </div>
+              <div class="col-2">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                  <label class="form-check-label" for="inlineRadio1">Model 1</label>
+                </div>
+              </div>
+              <div class="col-4">
+                  {% block model1_result %}
+                  model 1 result
+                  {% endblock %}
+              </div>
+              <div class="col-2">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                  <label class="form-check-label" for="inlineRadio2">Model 2</label>
+                </div>
+              </div>
+              <div class="col-4">
+                {% block model2_result %}
+                model 2 result
+                {% endblock %}
+              </div>
+                
+                  
             </div>
             <div class="col-2">
-
+              <button class="btn btn-success float-right">
+                <a class="">
+                  Next
+                </a>
+              </button>
             </div>
         </div>
     </div>

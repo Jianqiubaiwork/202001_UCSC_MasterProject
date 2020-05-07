@@ -20,15 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'p47^p4q@fk8+y+38)2p!rppxwo0wjzh8l1)3sg(^@8hs(xl=fs'
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 'p47^p4q@fk8+y+38)2p!rppxwo0wjzh8l1)3sg(^@8hs(xl=fs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = int(os.environ.get("DEBUG", default=0))
+DEBUG = True
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
@@ -41,9 +38,6 @@ INSTALLED_APPS = [
 
     # own
     'apps.survey',
-    #'django_createsuperuser',
-    #'apps.design',
-    #'apps.data'
 ]
 
 MIDDLEWARE = [
@@ -87,30 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # "ENGINE": os.environ.get("DB_ENGINE", "django.db.backends.sqlite3"),
-        # "NAME": os.environ.get("DB_NAME", os.path.join(BASE_DIR, "db.sqlite3")),
-        # "USER": os.environ.get("DB_USER", "user"),
-        # "PASSWORD": os.environ.get("DB_PASSWORD", "password"),
-        # "HOST": os.environ.get("DB_HOST", "localhost"),
-        # "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
-
-'''
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://redis_dev:6379/0",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
-
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-SESSION_CACHE_ALIAS = "default"
-'''
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

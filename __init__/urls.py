@@ -24,13 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name="home"),
     path('survey/', include('apps.survey.urls')),
-    #path('design/', include('apps.design.urls')),
-    #path('data/', include('apps.data.urls')),
-    #path("en/", eng_lang_view, name="eng_lang"),
-    #path("ch/", chn_lang_view, name="chn_lang"),
-    #path("http202/", http202_view, name="http202"),
-    #path("http404/", http404_view, name="http404"),
-    #path("comming_soon/", comming_soon_view, name="comming_soon")
 ]
 
 if settings.DEBUG:

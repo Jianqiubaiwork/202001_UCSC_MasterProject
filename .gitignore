@@ -1,0 +1,16 @@
+# git
+.DS_Store
+._.DS_Store
+
+# vscode 
+.vscode
+
+# data
+media/*
+!media/README.md
+
+# python venv
+*_venv
+
+# python cache
+__pycache__

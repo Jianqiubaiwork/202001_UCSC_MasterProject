@@ -1,0 +1,92 @@
+{% extends 'basis/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid mt-10" style="height: 90%; margin-top: 4rem;">
+    <div class="card w-100" style="height: 100%;">
+        <div class="card-header">
+            <ul class="nav nav-tabs">
+                <li id="loanAllocationTab" class="active"><a data-toggle="tab" href="#loanAllocationTable">
+                  <button class="btn btn-primary">Loan Allocation</button>
+                </a></li>
+                <li id="bailJudgementTab" class="active"><a data-toggle="tab" href="#bailJudgementTable">
+                    <button class="btn btn-primary">Bail Judgement</button>
+                  </a></li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <table id="loanAllocationTable" class="tab-pane fade in active table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>1a</th>
+                            <th>1b</th>
+                            <th>1c</th>
+                            <th>2a</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in all_loan_allocation_design_models %}
+                        <tr> 
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.name_A }}/9</td>
+                            <td>{{ item.race_A }}/9</td>
+                            <td>{{ item.gender_A }}/9</td>
+                            <td>{{ item.rate_A }}/9</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!--
+                <table id="bailJudgementTable" class="tab-pane fade in active table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>1a</th>
+                            <th>1b</th>
+                            <th>2a</th>
+                            <th>2b</th>
+                            <th>3a</th>
+                            <th>3b</th>
+                            <th>4a</th>
+                            <th>4b</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in all_bail_judgement_answer_models %}
+                        <tr> 
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.one_one_score }}/9</td>
+                            <td>{{ item.one_two_score }}/9</td>
+                            <td>{{ item.two_one_score }}/9</td>
+                            <td>{{ item.two_two_score }}/9</td>
+                            <td>{{ item.three_one_score }}/9</td>
+                            <td>{{ item.three_two_score }}/9</td>
+                            <td>{{ item.four_one_score }}/9</td>
+                            <td>{{ item.four_two_score }}/9</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                -->
+            </div>
+            
+        </div>
+        <div class="card-footer">Footer</div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block custom %}
+<script>
+    $(document).ready( function () {
+        $('#loanAllocationTable').DataTable();
+        $('#bailJudgementTable').DataTable();
+
+        document.getElementById("loanAllocationTable").classList.add("show");
+    });
+</script>
+{% endblock %}
+

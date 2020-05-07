@@ -1,0 +1,707 @@
+{% extends 'basis/base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+  @media (max-width: 768px) {
+    .btn {
+      font-size:5px;
+      padding:4px 6px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .btn {
+      font-size:6x;
+      padding:6px 12px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .btn {
+      font-size:7px;
+      padding:8px 12px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .btn {
+      padding:10px 16px;
+      font-size:12px;
+    }
+  }
+  
+  .card-body {
+    padding: 0.5rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-10" style="height: 90%; margin-top: 4rem;">
+  <div class="card w-100" style="height: 100%;">
+    <div class="card-header text-center">
+      <label><strong>Bail Judgement</strong></label>
+      <ul class="nav nav-tabs">
+        <li id="tab1" class="active"><a data-toggle="tab" href="#study1">
+          <button class="btn btn-primary" onclick="hideSubmitBtn()">Study1</button>
+        </a></li>
+        <li id="tab2"><a data-toggle="tab" href="#study2">
+          <button class="btn btn-primary" onclick="hideSubmitBtn()">Study2</button>
+        </a></li>
+        <li id="tab3"><a data-toggle="tab" href="#study3">
+            <button class="btn btn-primary" onclick="hideSubmitBtn()">Study3</button>
+          </a></li>
+          <li id="tab4"><a data-toggle="tab" href="#study4">
+            <button class="btn btn-primary" onclick="showSubmitBtn()">Study4</button>
+          </a></li>
+        <!-- Button trigger modal -->
+        <button id="reviewBtn" type="button" class="btn btn-success" data-toggle="modal" data-target="#submissionForm">
+          Review
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" 
+        id="submissionForm" 
+        data-backdrop="static" 
+        tabindex="-1" 
+        role="dialog" 
+        aria-labelledby="submissionFormLabel" 
+        aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <form action="/scenarios/bail_judgement/" method="post">
+                {% csrf_token %}
+                <div class="modal-header">
+                  <h5 class="modal-title" id="submissionFormLabel">Review Your Submission</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-10 text-left">
+                      {{ bail_judgement_answer_form.one_one_score.label }}
+                    </div>
+                    <div class="col-md-2 text-left">
+                      {{ bail_judgement_answer_form.one_one_score }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10 text-left">
+                      {{ bail_judgement_answer_form.two_one_score.label }}
+                    </div>
+                    <div class="col-md-2 text-left">
+                      {{ bail_judgement_answer_form.two_one_score }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10 text-left">
+                      {{ bail_judgement_answer_form.two_one_score.label }}
+                    </div>
+                    <div class="col-md-2 text-left">
+                      {{ bail_judgement_answer_form.two_one_score }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10 text-left">
+                      {{ bail_judgement_answer_form.two_two_score.label }}
+                    </div>
+                    <div class="col-md-2 text-left">
+                      {{ bail_judgement_answer_form.two_two_score }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10 text-left">
+                      {{ bail_judgement_answer_form.three_one_score.label }}
+                    </div>
+                    <div class="col-md-2 text-left">
+                      {{ bail_judgement_answer_form.three_one_score }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10 text-left">
+                      {{ bail_judgement_answer_form.three_two_score.label }}
+                    </div>
+                    <div class="col-md-2 text-left">
+                      {{ bail_judgement_answer_form.three_two_score }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10 text-left">
+                      {{ bail_judgement_answer_form.four_one_score.label }}
+                    </div>
+                    <div class="col-md-2 text-left">
+                      {{ bail_judgement_answer_form.four_one_score }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10 text-left">
+                      {{ bail_judgement_answer_form.four_two_score.label }}
+                    </div>
+                    <div class="col-md-2 text-left">
+                      {{ bail_judgement_answer_form.four_two_score }}
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div class="tab-content">
+        <div id="study1" class="tab-pane fade in active">
+          <div class="row">
+            <div class="col-md-12">
+                <h6><strong>scenario</strong></h6>
+                <div class="card" style="height: 70%;">
+                    <div class="card-body text-center">
+                      <p align="justify">
+                        Borden, a black women at age of 18, 
+                        stole a blue Huffy bicycle and a silcer Razor scooter worthing $80 in total, 
+                        had 4 juvenile misdemeanors before,
+                        but no subsequent offenses.
+                      </p>
+                      <p align="justify">
+                        Prater, a white men at age of 41,
+                        shoplifted $86.35 worth of tools from a nearby Home Depot store,
+                        had 2 armed robberies and 1 attempted armed robbery before,
+                        still had a subsequent offense of 1 grand theft.
+                      </p>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-12">
+              <h6><strong>question</strong></h6>
+              <div class="card" style="height: 70%;">
+                  <div class="card-body text-center">
+                    <p align="justify">
+                      Please evalute the risk score of the two defedants above based on your own perspectives.
+                    </p>
+                    <p align="justify">
+                      For each defedant, 1 means "low risk",
+                      and 9 means "high risk".
+                    </p>
+                  </div>
+              </div>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-12">
+              <h6><strong>answer</strong></h6>
+              <div class="card" style="height: auto;">
+                <div class="card-body text-center">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <a class="carousel-control-prev btn btn-primary" 
+                      href="#answerCarousel1" 
+                      role="button" 
+                      data-slide="prev"
+                      style="width: 50%; margin-left: 1rem;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      </a>
+                    </div>
+                    <div class="col-md-10">
+                      <div id="answerCarousel1" class="carousel slide" data-ride="">
+                        <ol class="carousel-indicators">
+                          <li data-target="#answerCarousel1" data-slide-to="0" class="active"></li>
+                          <li data-target="#answerCarousel1" data-slide-to="1"></li>
+                          <li data-target="#answerCarousel1" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <p>
+                              1. Borden's risk score: <br>
+                              &nbsp;
+                            </p>
+                            <div class="d-flex justify-content-center">
+                              <form class="range-field w-100">
+                                {% csrf_token %}
+                                <input id="slider11" class="border-0" type="range" min="1" max="9" style="width: 60%;" />
+                                <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan11"></span>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="carousel-item">
+                            <p align="justify" class="text-center">
+                              2. Prater's risk score:
+                            </p>
+                           
+                            <div class="d-flex justify-content-center">
+                              <form class="range-field w-100">
+                                {% csrf_token %}
+                                <input id="slider12" class="border-0" type="range" min="1" max="9" style="width: 60%;"/>
+                                <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan12"></span>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-1">
+                      <a class="carousel-control-next btn btn-primary" 
+                        href="#answerCarousel1" 
+                        role="button" 
+                        data-slide="next"
+                        style="width: 50%; margin-right: 1rem;">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          </div>
+        </div>
+        <div id="study2" class="tab-pane fade in active">
+            <div class="row">
+              <div class="col-md-12">
+                  <h6><strong>scenario</strong></h6>
+                  <div class="card" style="height: 70%;">
+                      <div class="card-body text-center">
+                        <p align="justify">
+                          Parker, a black men, 
+                          arrested by cocaine and marijuana, 
+                          but no subsequent offenses.
+                        </p>
+                        <p align="justify">
+                          Fugett, a white men,
+                          arrested by cocaine and marijuana, 
+                          still had 3 times on futher drug charges.
+                        </p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+            <div class="col-md-12">
+                <h6><strong>question</strong></h6>
+                <div class="card" style="height: 70%;">
+                    <div class="card-body text-center">
+                      <p align="justify">
+                        Please evalute the risk score of the two defedants above based on your own perspectives.
+                      </p>
+                      <p align="justify">
+                        For each defedant, 1 means "low risk",
+                        and 9 means "high risk".
+                      </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-12">
+                <h6><strong>answer</strong></h6>
+                <div class="card" style="height: auto;">
+                  <div class="card-body text-center">
+                    <div class="row">
+                      <div class="col-md-1">
+                        <a class="carousel-control-prev btn btn-primary" 
+                        href="#answerCarousel1" 
+                        role="button" 
+                        data-slide="prev"
+                        style="width: 50%; margin-left: 1rem;">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                      <div class="col-md-10">
+                        <div id="answerCarousel1" class="carousel slide" data-ride="">
+                          <ol class="carousel-indicators">
+                            <li data-target="#answerCarousel1" data-slide-to="0" class="active"></li>
+                            <li data-target="#answerCarousel1" data-slide-to="1"></li>
+                            <li data-target="#answerCarousel1" data-slide-to="2"></li>
+                          </ol>
+                          <div class="carousel-inner">
+                            <div class="carousel-item active">
+                              <p>
+                                1. Parker's risk score: <br>
+                                &nbsp;
+                              </p>
+                              <div class="d-flex justify-content-center">
+                                <form class="range-field w-100">
+                                  {% csrf_token %}
+                                  <input id="slider21" class="border-0" type="range" min="1" max="9" style="width: 60%;" />
+                                  <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan21"></span>
+                                </form>
+                              </div>
+                            </div>
+                            <div class="carousel-item">
+                              <p align="justify" class="text-center">
+                                2. Fugett's risk score:
+                              </p>
+                             
+                              <div class="d-flex justify-content-center">
+                                <form class="range-field w-100">
+                                  {% csrf_token %}
+                                  <input id="slider22" class="border-0" type="range" min="1" max="9" style="width: 60%;"/>
+                                  <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan22"></span>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <a class="carousel-control-next btn btn-primary" 
+                          href="#answerCarousel1" 
+                          role="button" 
+                          data-slide="next"
+                          style="width: 50%; margin-right: 1rem;">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div id="study3" class="tab-pane fade in active">
+            <div class="row">
+              <div class="col-md-12">
+                  <h6><strong>scenario</strong></h6>
+                  <div class="card" style="height: 70%;">
+                      <div class="card-body text-center">
+                        <p align="justify">
+                          Williams, a black women, 
+                          caught by DUI,
+                          but no subsequent offenses.
+                        </p>
+                        <p align="justify">
+                          Lugo, a white men,
+                          crashed his Lincoln Navigaro into a Toyota Camry while drunk
+                          still had a subsequent offense of 3 DUIs.
+                        </p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+            <div class="col-md-12">
+                <h6><strong>question</strong></h6>
+                <div class="card" style="height: 70%;">
+                    <div class="card-body text-center">
+                      <p align="justify">
+                        Please evalute the risk score of the two defedants above based on your own perspectives.
+                      </p>
+                      <p align="justify">
+                        For each defedant, 1 means "low risk",
+                        and 9 means "high risk".
+                      </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-12">
+                <h6><strong>answer</strong></h6>
+                <div class="card" style="height: auto;">
+                  <div class="card-body text-center">
+                    <div class="row">
+                      <div class="col-md-1">
+                        <a class="carousel-control-prev btn btn-primary" 
+                        href="#answerCarousel1" 
+                        role="button" 
+                        data-slide="prev"
+                        style="width: 50%; margin-left: 1rem;">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                      <div class="col-md-10">
+                        <div id="answerCarousel1" class="carousel slide" data-ride="">
+                          <ol class="carousel-indicators">
+                            <li data-target="#answerCarousel1" data-slide-to="0" class="active"></li>
+                            <li data-target="#answerCarousel1" data-slide-to="1"></li>
+                            <li data-target="#answerCarousel1" data-slide-to="2"></li>
+                          </ol>
+                          <div class="carousel-inner">
+                            <div class="carousel-item active">
+                              <p>
+                                1. Williams's risk score: <br>
+                                &nbsp;
+                              </p>
+                              <div class="d-flex justify-content-center">
+                                <form class="range-field w-100">
+                                  {% csrf_token %}
+                                  <input id="slider31" class="border-0" type="range" min="1" max="9" style="width: 60%;" />
+                                  <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan31"></span>
+                                </form>
+                              </div>
+                            </div>
+                            <div class="carousel-item">
+                              <p align="justify" class="text-center">
+                                2. Lugo's risk score:
+                              </p>
+                             
+                              <div class="d-flex justify-content-center">
+                                <form class="range-field w-100">
+                                  {% csrf_token %}
+                                  <input id="slider32" class="border-0" type="range" min="1" max="9" style="width: 60%;"/>
+                                  <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan32"></span>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <a class="carousel-control-next btn btn-primary" 
+                          href="#answerCarousel1" 
+                          role="button" 
+                          data-slide="next"
+                          style="width: 50%; margin-right: 1rem;">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div id="study4" class="tab-pane fade in active">
+            <div class="row">
+              <div class="col-md-12">
+                  <h6><strong>scenario</strong></h6>
+                  <div class="card" style="height: 70%;">
+                      <div class="card-body text-center">
+                        <p align="justify">
+                          Cannon, a black men, 
+                          caught by shoplifting,
+                          but no subsequent offenses.
+                        </p>
+                        <p align="justify">
+                          Rivelli, a white men,
+                          stole from a CVS and was caught with heroin in his car,
+                          still had a subsequent offense of shoplifting $1,000 worth of tools from a Home Depot.
+                        </p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+            <div class="col-md-12">
+                <h6><strong>question</strong></h6>
+                <div class="card" style="height: 70%;">
+                    <div class="card-body text-center">
+                      <p align="justify">
+                        Please evalute the risk score of the two defedants above based on your own perspectives.
+                      </p>
+                      <p align="justify">
+                        For each defedant, 1 means "low risk",
+                        and 9 means "high risk".
+                      </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-12">
+                <h6><strong>answer</strong></h6>
+                <div class="card" style="height: auto;">
+                  <div class="card-body text-center">
+                    <div class="row">
+                      <div class="col-md-1">
+                        <a class="carousel-control-prev btn btn-primary" 
+                        href="#answerCarousel1" 
+                        role="button" 
+                        data-slide="prev"
+                        style="width: 50%; margin-left: 1rem;">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                      <div class="col-md-10">
+                        <div id="answerCarousel1" class="carousel slide" data-ride="">
+                          <ol class="carousel-indicators">
+                            <li data-target="#answerCarousel1" data-slide-to="0" class="active"></li>
+                            <li data-target="#answerCarousel1" data-slide-to="1"></li>
+                            <li data-target="#answerCarousel1" data-slide-to="2"></li>
+                          </ol>
+                          <div class="carousel-inner">
+                            <div class="carousel-item active">
+                              <p>
+                                1. Cannon's risk score: <br>
+                                &nbsp;
+                              </p>
+                              <div class="d-flex justify-content-center">
+                                <form class="range-field w-100">
+                                  {% csrf_token %}
+                                  <input id="slider41" class="border-0" type="range" min="1" max="9" style="width: 60%;" />
+                                  <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan41"></span>
+                                </form>
+                              </div>
+                            </div>
+                            <div class="carousel-item">
+                              <p align="justify" class="text-center">
+                                2. Rivelli's risk score:
+                              </p>
+                             
+                              <div class="d-flex justify-content-center">
+                                <form class="range-field w-100">
+                                  {% csrf_token %}
+                                  <input id="slider42" class="border-0" type="range" min="1" max="9" style="width: 60%;"/>
+                                  <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan42"></span>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <a class="carousel-control-next btn btn-primary" 
+                          href="#answerCarousel1" 
+                          role="button" 
+                          data-slide="next"
+                          style="width: 50%; margin-right: 1rem;">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div> 
+    <div class="card-footer">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block custom %}
+<script>
+    $( document ).ready(function() {
+      const $valueSpan11 = $('.valueSpan11');
+      const $value11 = $('#slider11');
+      $valueSpan11.html($value11.val());
+      $value11.on('input change', () => {
+
+      $valueSpan11.html($value11.val());
+      });
+
+      const $valueSpan12 = $('.valueSpan12');
+      const $value12 = $('#slider12');
+      $valueSpan12.html($value12.val());
+      $value12.on('input change', () => {
+
+      $valueSpan12.html($value12.val());
+      });
+
+      const $valueSpan21 = $('.valueSpan21');
+      const $value21 = $('#slider21');
+      $valueSpan21.html($value21.val());
+      $value21.on('input change', () => {
+
+      $valueSpan21.html($value21.val());
+      });
+
+      const $valueSpan22 = $('.valueSpan22');
+      const $value22 = $('#slider22');
+      $valueSpan22.html($value22.val());
+      $value22.on('input change', () => {
+
+      $valueSpan22.html($value22.val());
+      });
+
+      const $valueSpan31 = $('.valueSpan31');
+      const $value31 = $('#slider31');
+      $valueSpan31.html($value31.val());
+      $value31.on('input change', () => {
+
+      $valueSpan31.html($value31.val());
+      });
+
+      const $valueSpan32 = $('.valueSpan32');
+      const $value32 = $('#slider32');
+      $valueSpan32.html($value32.val());
+      $value32.on('input change', () => {
+
+      $valueSpan32.html($value32.val());
+      });
+
+      const $valueSpan41 = $('.valueSpan41');
+      const $value41 = $('#slider41');
+      $valueSpan41.html($value41.val());
+      $value41.on('input change', () => {
+
+      $valueSpan41.html($value41.val());
+      });
+
+      const $valueSpan42 = $('.valueSpan42');
+      const $value42 = $('#slider42');
+      $valueSpan42.html($value42.val());
+      $value42.on('input change', () => {
+
+      $valueSpan42.html($value42.val());
+      });
+
+      $('.carousel').carousel({
+        interval: false
+      });
+
+      // made study1 tab automatically shows up by default
+      document.getElementById("study1").classList.add("show");
+      document.getElementById("reviewBtn").style.display = "none";
+    });
+</script>
+
+<script>
+  function hideSubmitBtn() {
+    document.getElementById("reviewBtn").style.display = "none";
+  };
+
+  function showSubmitBtn() {
+    document.getElementById("reviewBtn").style.display = "block";
+  };
+
+  $("#reviewBtn").click(function() {
+    document.getElementById("id_one_one_score").value = document.getElementById("slider11").value;
+    document.getElementById("id_one_two_score").value = document.getElementById("slider12").value;
+    document.getElementById("id_two_one_score").value = document.getElementById("slider21").value;
+    document.getElementById("id_two_two_score").value = document.getElementById("slider22").value;
+    document.getElementById("id_three_one_score").value = document.getElementById("slider31").value;
+    document.getElementById("id_three_two_score").value = document.getElementById("slider32").value;
+    document.getElementById("id_four_one_score").value = document.getElementById("slider41").value;
+    document.getElementById("id_four_two_score").value = document.getElementById("slider42").value;
+  });
+</script>
+
+
+<!--
+<script>
+    var selectedOption = document.getElementById('selectedOption');
+    
+    $('#oneA').click(function (e) {
+        selectedOption.value = "you have chosen A";
+    });
+
+    $('#oneB').click(function (e) {
+        selectedOption.value = "you have chosen B";
+    });
+
+    $('#oneC').click(function (e) {
+        selectedOption.value = "you have chosen C";
+    });
+
+    $('#submitButton').click(function (e) {
+        alert('implementing the post method here');
+    });
+
+    $('#scenarioTitle').on('keydown', function(e) {
+        if (e.which == 13) {
+            e.preventDefault();
+            alert('you have named your scenario: \n'+document.getElementById('scenarioTitle').value);
+        }
+    });
+</script>
+-->
+{% endblock %}

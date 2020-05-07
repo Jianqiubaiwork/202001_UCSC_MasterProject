@@ -8,6 +8,8 @@
 # data
 media/*
 !media/README.md
+!media/compas.csv
+!media/compas_test.csv
 
 # python venv
 *_venv

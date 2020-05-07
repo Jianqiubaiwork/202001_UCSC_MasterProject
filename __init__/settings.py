@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # extension
-    'django.extensions',
+    'django_extensions',
+    'import_export',
 
     # own
-    'apps.bail_judgement',
+    'apps.data',
 ]
 
 MIDDLEWARE = [

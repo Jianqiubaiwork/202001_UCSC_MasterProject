@@ -1,4 +1,4 @@
 import logging
 
 def hello():
-    logging.info("This is backends!")
+    logging.info("This is backends scirpts!")

@@ -23,7 +23,7 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name="home"),
-    path('survey/', include('apps.survey.urls')),
+    path('data/', include('apps.data.urls')),
 ]
 
 if settings.DEBUG:

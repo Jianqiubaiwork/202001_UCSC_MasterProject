@@ -36,8 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # extension
+    'django.extensions',
+
     # own
-    'apps.survey',
+    'apps.bail_judgement',
 ]
 
 MIDDLEWARE = [

@@ -6,6 +6,35 @@ from .forms import *
 from .models import *
 
 
+class BailJudgementOverView(TemplateView):
+    template_name = 'bail_judgement_overview.html'
+
+    def get(self, request):
+        context = {
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        context = {
+        }
+        return render(request, self.template_name, context)
+
+
+class BailJudgementDetailView(TemplateView):
+    template_name = 'bail_judgement_detail.html'
+
+    def get(self, request, id):
+        context = {
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, id):
+        context = {
+        }
+        return render(request, self.template_name, context)
+
+
+'''
 DATA = [
         {
             'id' : 1,
@@ -106,29 +135,4 @@ class LoanAllocationDetailView(TemplateView):
         return render(request, self.template_name, context)
 
 
-class BailJudgementOverView(TemplateView):
-    template_name = 'bail_judgement_overview_static.html'
-
-    def get(self, request):
-        context = {
-        }
-        return render(request, self.template_name, context)
-
-    def post(self, request):
-        context = {
-        }
-        return render(request, self.template_name, context)
-
-
-class BailJudgementDetailView(TemplateView):
-    template_name = 'bail_judgement_detail_static.html'
-
-    def get(self, request, id):
-        context = {
-        }
-        return render(request, self.template_name, context)
-
-    def post(self, request, id):
-        context = {
-        }
-        return render(request, self.template_name, context)
+'''

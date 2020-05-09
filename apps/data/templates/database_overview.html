@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block css_extensions %}
+<link rel="stylesheet" href="/static/photomedia/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/photomedia/css/owl.carousel.min.css">
+<link rel="stylesheet" href="/static/photomedia/css/magnific-popup.css">
+<link rel="stylesheet" href="/static/photomedia/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/photomedia/css/themify-icons.css">
+<link rel="stylesheet" href="/static/photomedia/css/nice-select.css">
+<link rel="stylesheet" href="/static/photomedia/css/flaticon.css">
+<link rel="stylesheet" href="/static/photomedia/css/animate.css">
+<link rel="stylesheet" href="/static/photomedia/css/slicknav.css">
+<link rel="stylesheet" href="/static/photomedia/css/style.css">
+{% endblock %}
+
+{% block css_customs %}
+<style>
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.blog_thumb:hover .image {
+  opacity: 0.3;
+}
+
+.blog_thumb:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+    <!-- most_recent_blog_start -->
+    <div class="most_recent_blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title mb-33">
+                        <h3 class="text-white">View Our Database</h3>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6">
+                            <div class="single_blog">
+                                <div class="blog_thumb">
+                                    <a href="#">
+                                        <img src="/static/myimg/bail-judgement.jpg" alt="">
+                                    </a>
+                                </div>
+                                <div class="blog_meta">
+                                    <p><a href="#">Bail Judgement</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="btn_area text-center">
+                        <a href="#" class="boxed-btn">Load More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- most_recent_blog_end -->
+
+{% endblock %}
+
+{% block js_extensions %}
+    <!-- JS here -->
+    <!--
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    -->
+    <script src="/static/photomedia/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/static/photomedia/js/popper.min.js"></script>
+    <script src="/static/photomedia/js/bootstrap.min.js"></script>
+    <script src="/static/photomedia/js/owl.carousel.min.js"></script>
+    <script src="/static/photomedia/js/isotope.pkgd.min.js"></script>
+    <script src="/static/photomedia/js/ajax-form.js"></script>
+    <script src="/static/photomedia/js/waypoints.min.js"></script>
+    <script src="/static/photomedia/js/jquery.counterup.min.js"></script>
+    <script src="/static/photomedia/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/static/photomedia/js/scrollIt.js"></script>
+    <script src="/static/photomedia/js/jquery.scrollUp.min.js"></script>
+    <script src="/static/photomedia/js/wow.min.js"></script>
+    <script src="/static/photomedia/js/nice-select.min.js"></script>
+    <script src="/static/photomedia/js/jquery.slicknav.min.js"></script>
+    <script src="/static/photomedia/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/photomedia/js/plugins.js"></script>
+
+    <!--contact js-->
+    <!--
+    <script src="/static/photomedia/js/contact.js"></script>
+    -->
+    <script src="/static/photomedia/js/jquery.ajaxchimp.min.js"></script>
+    <script src="/static/photomedia/js/jquery.form.js"></script>
+    <script src="/static/photomedia/js/jquery.validate.min.js"></script>
+    <script src="/static/photomedia/js/mail-script.js"></script>
+
+    <script src="/static/photomedia/js/main.js"></script>
+{% endblock %}

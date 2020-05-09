@@ -21,6 +21,12 @@
   <!-- Custom styles for this template -->
   <link href="/static/thirdparty/css/grayscale.min.css" rel="stylesheet">
 
+  {% block css_extensions %}
+  {% endblock %}
+
+  {% block css_customs %}
+  {% endblock %}
+
 </head>
 
 <body id="page-top">
@@ -51,11 +57,14 @@
 
   <!-- Header -->
   <header class="masthead"
-  style="background-image: url('/static/thirdparty/img/bg-dark.jpg');">
+  style="background-image: url('/static/thirdparty/img/bg-dark.jpg');
+  height: calc(100vh);">
+    {% block content %}
     <div class="container d-flex h-100 align-items-center">
-      {% block content %}
-      {% endblock %}
+      
+      
     </div>
+    {% endblock %}
   </header>
 
   <!-- About Section -->
@@ -105,6 +114,9 @@
   {% block footer %}
   {% endblock %}
 
+  {% block js_extensions %}
+  {% endblock %}
+
   <!-- Bootstrap core JavaScript -->
   <script src="/static/thirdparty/vendor/jquery/jquery.min.js"></script>
   <script src="/static/thirdparty/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -115,7 +127,7 @@
   <!-- Custom scripts for this template -->
   <script src="/static/thirdparty/js/grayscale.min.js"></script>
 
-  {% block custom_scripts %}
+  {% block js_customs %}
   {% endblock %}
 
 </body>

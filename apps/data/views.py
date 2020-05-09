@@ -7,7 +7,7 @@ from .models import *
 
 
 class OverView(TemplateView):
-    template_name = 'overview.html'
+    template_name = 'database_overview.html'
 
     def get(self, request):
         context = {

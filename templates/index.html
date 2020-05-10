@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block content %}
-      <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">Fairness Machine</h1>
-        <h2 class="text-white-50 mx-auto mt-2 mb-5">A web platform serving surveys for investigating machine learning fairness</h2>
-        <a id="id_first_survey" href="/data" class="btn btn-primary js-scroll-trigger">Goto Surveys</a>
+      <div class="mx-auto text-center d-flex align-items-center" style="height: 100%;">
+        <div class="container">
+          <h1 class="mx-auto my-0">Fairness Machine</h1><br>
+          <h2 class="text-white-50 mx-auto mt-2 mb-5">A web platform serving surveys for investigating machine learning fairness</h2>
+          <a id="id_first_survey" href="/survey" class="btn btn-primary js-scroll-trigger">Goto Surveys</a>
+        </div>
       </div>
 {% endblock %}
 

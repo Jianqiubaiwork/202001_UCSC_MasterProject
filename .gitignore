@@ -1,0 +1,21 @@
+# git
+.DS_Store
+._.DS_Store
+
+# vscode 
+.vscode
+.vscode/*
+
+# data
+data/*
+media/*
+
+# python venv
+*_venv
+django/*_venv
+
+# python cache
+__pycache__
+
+# db
+db*

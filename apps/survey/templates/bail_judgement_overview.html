@@ -1,1 +1,84 @@
-overview
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_customs %}
+<link rel="stylesheet" type="text/css" href="/static/DataTables/datatables.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="mx-auto text-center d-flex align-items-center" style="height: 100%;">
+    <div class="container h-100" style="padding-top: 100px; padding-bottom: 100px;">
+        <div class="container h-100">
+            <div class="card h-100 bg-dark text-white">
+                <div class="card-header" style="height: 5%;">
+                    <h6>Bail Judgement Overview</h6>
+                </div>
+                <div class="card-body" style="height: 90%;">
+                    <table id="bailJudgementTable" class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Sex</th>
+                                <th>Age</th>
+                                <th>Prior Offenses</th>
+                                <th>Reason</th>
+                                <th>Risk Score</th>
+                                <th>Label</th>
+                                <th>Is Fair?</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in objs %}
+                            <tr>
+                                <td>{{ obj.id }}</td>
+                                <td>{{ obj.name }}</td>
+                                <td>{{ obj.sex }}</td>
+                                <td>{{ obj.age }}</td>
+                                <td>{{ obj.priors_count }}</td>
+                                <td>{{ obj.r_charge_desc }}</td>
+                                <td>{{ obj.decile_score }}</td>
+                                <td>{{ obj.label }}</td>
+                                <td>{{ obj.is_fair }}</td>
+                                <td>
+                                    <button class="">
+                                        <a href="/survey/bail_judgement/{{ obj.id }}">
+                                            Vote
+                                        </a>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer" style="height: 5%;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block js_customs %}
+
+<!--
+    ==========
+    DataTables
+    ==========
+-->
+<script type="text/javascript" charset="utf8" src="/static/DataTables/datatables.js"></script>
+
+<script>
+$(document).ready( function () {
+    $('#bailJudgementTable').DataTable( {
+        "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    } );
+} );
+</script>
+{% endblock %}

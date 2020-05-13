@@ -1,1 +1,164 @@
-detail
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block css_customs %}
+<style>
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.img-container:hover .image {
+  opacity: 0.3;
+}
+
+.img-container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 16px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="mx-auto text-center d-flex align-items-center" style="height: 100%;">
+    <div class="container h-100" style="padding-top: 100px; padding-bottom: 100px;">
+        <div class="container h-100">
+           <div class="row" style="height: 100%;">
+                <div class="col-3"></div>
+                <div class="col-6 d-flex align-items-center justify-content-center">
+                    <div class="img-container">
+                        <img src="/static/myimg/bail-judgement-cover.jpg" alt="Avatar" class="image" style="width:100%">
+                        <div class="middle">
+                          <div class="text">NAME | {{ obj.name }} </div>
+                          <div class="text">SEX | {{ obj.sex }} </div>
+                          <div class="text">AGE | {{ obj.age }} </div>
+                          <div class="text">RACE | {{ obj.race }} </div>
+                          <div class="text">REASON | {{ obj.r_charge_desc }} </div>
+                          <div class="text">RISK SCORE | {{ obj.decile_score }} </div>
+                          <div class="text">LABEL | {{ obj.label }} </div>
+                          <div class="text card mt-4" style="opacity: 0.5;">
+                            <div class="card-body text-dark">
+                              {% csrf_token %}
+                              <div>Is this fair?</div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">No</label>
+                              </div>
+                              <button class="btn btn-light" id="id_submit">Submit</button>
+                                <!--
+                                <form action="/survey/bail_judgement/{{ obj.id }}/" method="post">
+                                    {% csrf_token %}
+
+                                    <label for="is_fair">Is this fair?</label>
+                                    <div>
+                                        {{ bail_judgement_full_form.is_fair }}
+                                    </div>
+                                    <input class="btn btn-light" type="submit" value="submit">
+                                </form>
+                                -->
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-3"></div>
+           </div>
+        </div>  
+    </div>
+</div>
+{% endblock %}
+
+{% block js_extensions %}
+    <!-- JS here -->
+    <!--
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    -->
+    <script src="/static/photomedia/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/static/photomedia/js/popper.min.js"></script>
+    <script src="/static/photomedia/js/bootstrap.min.js"></script>
+    <script src="/static/photomedia/js/owl.carousel.min.js"></script>
+    <script src="/static/photomedia/js/isotope.pkgd.min.js"></script>
+    <script src="/static/photomedia/js/ajax-form.js"></script>
+    <script src="/static/photomedia/js/waypoints.min.js"></script>
+    <script src="/static/photomedia/js/jquery.counterup.min.js"></script>
+    <script src="/static/photomedia/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/static/photomedia/js/scrollIt.js"></script>
+    <script src="/static/photomedia/js/jquery.scrollUp.min.js"></script>
+    <script src="/static/photomedia/js/wow.min.js"></script>
+    <script src="/static/photomedia/js/nice-select.min.js"></script>
+    <script src="/static/photomedia/js/jquery.slicknav.min.js"></script>
+    <script src="/static/photomedia/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/photomedia/js/plugins.js"></script>
+
+    <!--contact js-->
+    <!--
+    <script src="/static/photomedia/js/contact.js"></script>
+    -->
+    <script src="/static/photomedia/js/jquery.ajaxchimp.min.js"></script>
+    <script src="/static/photomedia/js/jquery.form.js"></script>
+    <script src="/static/photomedia/js/jquery.validate.min.js"></script>
+    <script src="/static/photomedia/js/mail-script.js"></script>
+
+    <script src="/static/photomedia/js/main.js"></script>
+{% endblock %}
+
+{% block js_customs %}
+<script>
+
+var is_fair = null
+
+$('#id_submit').click(function(){
+  if($('#inlineRadio1').is(':checked')) { 
+    is_fair = true;
+    alert(is_fair);
+  }
+  else if ($('#inlineRadio2').is(':checked')) { 
+    is_fair = false;
+    alert(is_fair);
+  }
+  alert(is_fair);
+  /*
+  $.post( "/survey/bail_judgement/{{ obj.id }}/", { is_fair: is_fair })
+    .done(function( data ) {
+      alert( "Data Loaded: " + data );
+    });
+  */
+ /*
+  $.ajax({
+    url : url,
+    type: "POST",
+    data : {
+      csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value},
+    dataType : "json",
+    success: function( data ){
+        // do something
+    }
+  });
+  */
+});
+</script>
+{% endblock %}

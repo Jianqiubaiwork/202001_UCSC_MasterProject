@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.conf import settings
 
@@ -19,7 +19,9 @@ class BailJudgementOverView(TemplateView):
     template_name = 'bail_judgement_overview.html'
 
     def get(self, request):
+        objs = BailJudgementModel.objects.all()
         context = {
+            'objs' : objs,
         }
         return render(request, self.template_name, context)
 
@@ -31,6 +33,50 @@ class BailJudgementOverView(TemplateView):
 
 class BailJudgementDetailView(TemplateView):
     template_name = 'bail_judgement_detail.html'
+
+    def get(self, request, id):
+        obj = get_object_or_404(BailJudgementModel, id=id)
+        #bail_judgement_full_form = BailJudgementFullForm()
+        context = {
+            'obj' : obj,
+            #'bail_judgement_full_form' : bail_judgement_full_form,
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, id):
+        obj = get_object_or_404(BailJudgementModel, id=id)
+        '''
+        bail_judgement_full_form = BailJudgementFullForm(request.POST)
+        if bail_judgement_full_form.is_valid():
+            bail_judgement_full_form.save()
+            print('success')
+            return redirect('/survey/bail_judgement')
+        else:
+            print(bail_judgement_full_form.errors)
+        '''
+        context = {
+            'obj' : obj,
+            #'bail_judgement_full_form' : bail_judgement_full_form,
+        }
+        return render(request, self.template_name, context)
+
+
+class LoanAllocationOverView(TemplateView):
+    template_name = 'loan_allocation_overview.html'
+
+    def get(self, request):
+        context = {
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        context = {
+        }
+        return render(request, self.template_name, context)
+
+
+class LoanAllocationDetailView(TemplateView):
+    template_name = 'loan_allocation_detail.html'
 
     def get(self, request, id):
         context = {
@@ -114,34 +160,9 @@ def get_obj_B_by_id(data, id):
 
 
 # Create your views here.
-class LoanAllocationOverView(TemplateView):
-    template_name = 'loan_allocation_overview_static.html'
 
-    def get(self, request):
-        context = {
-        }
-        return render(request, self.template_name, context)
 
-    def post(self, request):
-        context = {
-        }
-        return render(request, self.template_name, context)
 
-class LoanAllocationDetailView(TemplateView):
-    template_name = 'loan_allocation_detail_static.html'
-
-    def get(self, request, pair_id):
-        context = {
-            'title' : 'loan_allocation_static.csv',
-            'obj_A' : get_obj_A_by_id(DATA, pair_id * 2),
-            'obj_B' : get_obj_B_by_id(DATA, pair_id * 2)
-        }
-        return render(request, self.template_name, context)
-
-    def post(self, request, pair_id):
-        context = {
-        }
-        return render(request, self.template_name, context)
 
 
 '''

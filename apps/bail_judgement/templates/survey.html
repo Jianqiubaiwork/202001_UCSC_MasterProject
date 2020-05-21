@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block css_customs %}
+<style>
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.img-container:hover .image {
+  opacity: 0.3;
+}
+
+.img-container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 16px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="mx-auto text-center d-flex align-items-center" style="height: 100%;">
+    <div class="container h-100" style="padding-top: 100px; padding-bottom: 100px;">
+        <div class="pagination h-100 w-100">
+            <span class="step-links h-100 w-100">
+                <div class="row" style="height: 90%;">
+                    <div class="col-3 d-flex align-items-center justify-content-center">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first &nbsp;</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                    </div>
+                    <div class="col-6 d-flex align-items-center justify-content-center">
+                        <div class="img-container">
+                            {% for obj in page_obj %}
+                            <img src="/static/myimg/{{ obj.image_name }}" alt="Avatar" class="image h-100">
+                            <div class="middle">
+                                <div class="text">ID | {{ obj.id }} </div>
+                                <div class="text">SEX | {{ obj.sex }} </div>
+                                <div class="text">AGE | {{ obj.age }} </div>
+                                <div class="text">RACE | {{ obj.race }} </div>
+                                <div class="text">PRIORS COUNT | {{ obj.priors_count }} </div>
+                                <div class="text">TWO YEAR RECID | {{ obj.two_year_recid }} </div>
+                                <div class="text">JAIL IN | {{ obj.c_jail_in }} </div>
+                                <div class="text">JAIL OUT | {{ obj.c_jail_out }} </div>
+                                <div class="text">CHARGE DEGREE | {{ obj.c_charge_degree }} </div>
+                                <div class="text">SCORE TEXT | {{ obj.score_text }} </div>
+                                <div class="text">DECILE SCORE | {{ obj.decile_score }} </div>
+                                
+                            
+                                <div class="text card mt-4" style="opacity: 0.5;">
+                                    <div class="card-body text-dark">
+                                    {% csrf_token %}
+                                    <div>Which model you prefer?</div>
+                                    <div>Model 1: {{ obj.predictor1_prob }}</div>
+                                    <div>Model 2: {{ obj.predictor2_prob }}</div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                        <label class="form-check-label" for="inlineRadio1">1</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        <label class="form-check-label" for="inlineRadio2">2</label>
+                                    </div>
+                                    <button class="btn btn-light" id="id_submit">Submit</button>
+                                        <!--
+                                        <form action="/survey/bail_judgement/{{ obj.id }}/" method="post">
+                                            {% csrf_token %}
+
+                                            <label for="is_fair">Is this fair?</label>
+                                            <div>
+                                                {{ bail_judgement_full_form.is_fair }}
+                                            </div>
+                                            <input class="btn btn-light" type="submit" value="submit">
+                                        </form>
+                                        -->
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-3 d-flex align-items-center justify-content-center">
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next &nbsp;</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}    
+                    </div>
+                </div>
+                <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                    <span class="current text-white">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                </div>
+            </span>
+        </div>     
+    </div>
+</div>
+{% endblock %}
+
+{% block js_extensions %}
+    <!-- JS here -->
+    <!--
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    -->
+    <script src="/static/photomedia/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/static/photomedia/js/popper.min.js"></script>
+    <script src="/static/photomedia/js/bootstrap.min.js"></script>
+    <script src="/static/photomedia/js/owl.carousel.min.js"></script>
+    <script src="/static/photomedia/js/isotope.pkgd.min.js"></script>
+    <script src="/static/photomedia/js/ajax-form.js"></script>
+    <script src="/static/photomedia/js/waypoints.min.js"></script>
+    <script src="/static/photomedia/js/jquery.counterup.min.js"></script>
+    <script src="/static/photomedia/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/static/photomedia/js/scrollIt.js"></script>
+    <script src="/static/photomedia/js/jquery.scrollUp.min.js"></script>
+    <script src="/static/photomedia/js/wow.min.js"></script>
+    <script src="/static/photomedia/js/nice-select.min.js"></script>
+    <script src="/static/photomedia/js/jquery.slicknav.min.js"></script>
+    <script src="/static/photomedia/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/photomedia/js/plugins.js"></script>
+
+    <!--contact js-->
+    <!--
+    <script src="/static/photomedia/js/contact.js"></script>
+    -->
+    <script src="/static/photomedia/js/jquery.ajaxchimp.min.js"></script>
+    <script src="/static/photomedia/js/jquery.form.js"></script>
+    <script src="/static/photomedia/js/jquery.validate.min.js"></script>
+    <script src="/static/photomedia/js/mail-script.js"></script>
+
+    <script src="/static/photomedia/js/main.js"></script>
+{% endblock %}
+
+{% block js_customs %}
+<script>
+
+var is_fair = 0
+
+$('#id_submit').click(function(){
+  if($('#inlineRadio1').is(':checked')) { 
+    is_fair = 1;
+    alert('You chose ' + is_fair);
+  }
+  else if ($('#inlineRadio2').is(':checked')) { 
+    is_fair = 2;
+    alert('You chose ' + is_fair);
+  }
+  alert('You chose ' + is_fair);
+  /*
+  $.post( "/survey/bail_judgement/{{ obj.id }}/", { is_fair: is_fair })
+    .done(function( data ) {
+      alert( "Data Loaded: " + data );
+    });
+  */
+ /*
+  $.ajax({
+    url : url,
+    type: "POST",
+    data : {
+      csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value},
+    dataType : "json",
+    success: function( data ){
+        // do something
+    }
+  });
+  */
+});
+</script>
+{% endblock %}

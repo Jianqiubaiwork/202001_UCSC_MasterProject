@@ -2,7 +2,7 @@ from django import forms
 from .models import *
 
 
-
+'''
 class BailJudgementFullForm(forms.ModelForm):
     class Meta:
         model = BailJudgementModel
@@ -25,3 +25,4 @@ class BailJudgementVoteForm(forms.ModelForm):
         fields = (
             'is_fair', 
             )
+'''

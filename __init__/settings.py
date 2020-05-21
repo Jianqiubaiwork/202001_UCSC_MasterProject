@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'import_export',
 
     # own
-    'apps.survey',
+    'apps.bail_judgement',
 ]
 
 MIDDLEWARE = [

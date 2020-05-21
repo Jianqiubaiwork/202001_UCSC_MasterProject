@@ -7,6 +7,9 @@ from import_export.admin import ImportExportModelAdmin
 #    pass
 #admin.site.register(BailJudgementModel, AuthorAdmin)
 
-@admin.register(BailJudgementModel)
+@admin.register(CompasModel)
+#@admin.register(CompasPredictionModel)
+@admin.register(TrainedModel)
+@admin.register(SurveyQueueModel)
 class ViewAdmin(ImportExportModelAdmin):
     pass

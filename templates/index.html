@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block css_customs %}
+
+{% endblock %}
+
 {% block content %}
       <div class="mx-auto text-center d-flex align-items-center" style="height: 100%;">
         <div class="container">
           <h1 class="mx-auto my-0">Fairness Machine</h1><br>
           <h2 class="text-white-50 mx-auto mt-2 mb-5">A web platform serving surveys for investigating machine learning fairness</h2>
-          <a id="id_first_survey" href="/survey" class="btn btn-primary js-scroll-trigger">Goto Surveys</a>
+          <a href="/bail_judgement" class="btn btn-primary js-scroll-trigger">Goto Survey</a>
         </div>
       </div>
 {% endblock %}
 
-  <!-- Projects Section -->
-  {% block projects %}
-  <section id="projects" class="projects-section bg-light">
+  <!-- Surveys Section -->
+  {% block surveys %}
+  <section id="id_surveys" class="projects-section bg-light">
     <div class="container">
 
       <!-- Featured Project Row -->
@@ -69,7 +73,7 @@
               <div class="project-text w-100 my-auto text-center text-lg-right">
                 <h4 class="text-white">Bail Judgement</h4>
                 <p class="mb-0 text-white-50">We have trained several models based on the COMPAS dataset. 
-                  Please follow the <a href="#id_first_survey" class="js-scroll-trigger">first survey</a> above to help us decide solid models 
+                  Please follow the <a href="/bail_judgement" class="js-scroll-trigger">first survey</a> above to help us decide solid models 
                   by contributing your perspectives.
                 </p>
                 <hr class="d-none d-lg-block mb-0 mr-0">
@@ -81,6 +85,7 @@
 
     </div>
   </section>
+    
   {% endblock %}
 
   {% block contact %}

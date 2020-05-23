@@ -8,7 +8,7 @@ from import_export.admin import ImportExportModelAdmin
 #admin.site.register(BailJudgementModel, AuthorAdmin)
 
 @admin.register(CompasModel)
-#@admin.register(CompasPredictionModel)
+@admin.register(CompasPredictionModel)
 @admin.register(TrainedModel)
 @admin.register(SurveyQueueModel)
 class ViewAdmin(ImportExportModelAdmin):

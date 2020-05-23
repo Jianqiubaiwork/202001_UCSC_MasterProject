@@ -7,10 +7,11 @@
 .image {
   opacity: 1;
   display: block;
-  width: 100%;
-  height: auto;
   transition: .5s ease;
   backface-visibility: hidden;
+  max-width: 100%;
+  max-height: 100%;
+  display: block; 
 }
 
 .middle {
@@ -45,31 +46,35 @@
         <div class="pagination h-100 w-100">
             <span class="step-links h-100 w-100">
                 <div class="row" style="height: 90%;">
-                    <div class="col-3 d-flex align-items-center justify-content-center">
-                        {% if page_obj.has_previous %}
-                            <a href="?page=1">&laquo; first &nbsp;</a>
-                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                        {% endif %}
-                    </div>
-                    <div class="col-6 d-flex align-items-center justify-content-center">
-                        <div class="img-container">
+                    <div class="col-12 d-flex align-items-center justify-content-center h-100">
+                        <div class="img-container w-100 h-100 d-flex align-items-center justify-content-center">
                             {% for obj in page_obj %}
-                            <img src="/static/myimg/{{ obj.image_name }}" alt="Avatar" class="image h-100">
-                            <div class="middle">
-                                <div class="text">ID | {{ obj.id }} </div>
-                                <div class="text">SEX | {{ obj.sex }} </div>
-                                <div class="text">AGE | {{ obj.age }} </div>
-                                <div class="text">RACE | {{ obj.race }} </div>
-                                <div class="text">PRIORS COUNT | {{ obj.priors_count }} </div>
-                                <div class="text">TWO YEAR RECID | {{ obj.two_year_recid }} </div>
-                                <div class="text">JAIL IN | {{ obj.c_jail_in }} </div>
-                                <div class="text">JAIL OUT | {{ obj.c_jail_out }} </div>
-                                <div class="text">CHARGE DEGREE | {{ obj.c_charge_degree }} </div>
-                                <div class="text">SCORE TEXT | {{ obj.score_text }} </div>
-                                <div class="text">DECILE SCORE | {{ obj.decile_score }} </div>
-                                
-                            
-                                <div class="text card mt-4" style="opacity: 0.5;">
+                            <img src="/static/myimg/{{ page_number }}.jpg" alt="Avatar" class="image">
+                            <div class="middle h-100 w-100 container">
+                                <div class="row border d-flex justify-content-center justify-content-center"
+                                style="height: 5%;">
+                                  <div class="text">ID | {{ obj.id }} </div>
+                                </div>
+                                <div class="row border d-flex justify-content-center justify-content-center"
+                                style="height: 65%;">
+                                   <div class="col-6">
+                                    <div class="text">SEX | {{ obj.sex }} </div>
+                                    <div class="text">AGE | {{ obj.age }} </div>
+                                    <div class="text">RACE | {{ obj.race }} </div>
+                                   </div>
+                                   <div class="col-6">
+                                    <div class="text">PRIORS COUNT | {{ obj.priors_count }} </div>
+                                    <div class="text">TWO YEAR RECID | {{ obj.two_year_recid }} </div>
+                                    <div class="text">JAIL IN | {{ obj.c_jail_in }} </div>
+                                    <div class="text">JAIL OUT | {{ obj.c_jail_out }} </div>
+                                    <div class="text">CHARGE DEGREE | {{ obj.c_charge_degree }} </div>
+                                    <div class="text">SCORE TEXT | {{ obj.score_text }} </div>
+                                    <div class="text">DECILE SCORE | {{ obj.decile_score }} </div>
+                                   </div>
+                                </div>
+                                <div class="row d-flex justify-content-center justify-content-center"
+                                style="height:30%">
+                                  <div class="text card w-100" style="opacity: 0.5;">
                                     <div class="card-body text-dark">
                                     {% csrf_token %}
                                     <div>Which model you prefer?</div>
@@ -96,22 +101,36 @@
                                         </form>
                                         -->
                                     </div>
+                                  </div>
                                 </div>
+                                
+                          
+                            
+                                
                             </div>
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="col-3 d-flex align-items-center justify-content-center">
-                        {% if page_obj.has_next %}
-                            <a href="?page={{ page_obj.next_page_number }}">next &nbsp;</a>
-                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                        {% endif %}    
-                    </div>
                 </div>
                 <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
+                  <div class="col-3">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first &nbsp;</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                  </div>
+                  <div class="col-6">
                     <span class="current text-white">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                     </span>
+                  </div>
+                  <div class="col-3">
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next &nbsp;</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}  
+                  </div>
+                    
                 </div>
             </span>
         </div>     

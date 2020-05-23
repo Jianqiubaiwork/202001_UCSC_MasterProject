@@ -18,4 +18,4 @@ django/*_venv
 __pycache__
 
 # db
-db*
+db

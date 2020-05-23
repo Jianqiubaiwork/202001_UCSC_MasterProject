@@ -32,9 +32,10 @@ class SurveyView(TemplateView):
     template_name = 'survey.html'
 
     def get(self, request):
-        #count = CompasModel.objects.count()
-        #rand_obj = CompasModel.objects.all()[randint(0, count - 1)] #single random object
         rand_objs = random.choices(CompasModel.objects.all(), k=10)
+        for rand_obj in rand_objs:
+            rand_obj_prediction = CompasPredictionModel.objects.get(id=rand_obj.id)
+            rand_obj.prediction = rand_obj_prediction
         paginator = Paginator(rand_objs, 1)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)

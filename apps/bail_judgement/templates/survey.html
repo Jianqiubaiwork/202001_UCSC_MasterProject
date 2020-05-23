@@ -37,6 +37,50 @@
   color: white;
   font-size: 16px;
 }
+
+.check{
+	margin: 0 0 10px;
+	border: 3px solid white;
+	position:relative;
+}
+
+.check button{
+	cursor: pointer;
+	font-family: 'BluebirdRegular', sans-serif; 
+	display:inline-block;
+	width:49.5%;
+	height:3.2em;
+	border:none;
+	background:transparent;
+	&:focus{
+		border:none;
+		outline: none;
+	}
+	&:hover{
+		color:$batman-acc;
+	}
+	transition: all 0.3s;
+}
+
+.yes-btn, .no-btn{
+	z-index:20;
+}
+
+.toggle{
+	z-index:-1;
+	position:absolute;
+	top:0;
+	height:3.2em;
+	background:white;
+	width:50%;
+	transition: all 0.3s;
+}
+
+button:focus {
+    outline: blue auto 5px; 
+    background-color: #64a19d;
+}
+
 </style>
 {% endblock %}
 
@@ -58,11 +102,17 @@
                                 <div class="row border d-flex justify-content-center justify-content-center"
                                 style="height: 65%;">
                                    <div class="col-6">
+                                    <div class="text mt-4">
+                                      <h3>Sensitive Information</h3>
+                                    </div>
                                     <div class="text">SEX | {{ obj.sex }} </div>
                                     <div class="text">AGE | {{ obj.age }} </div>
                                     <div class="text">RACE | {{ obj.race }} </div>
                                    </div>
                                    <div class="col-6">
+                                    <div class="text mt-4">
+                                      <h3>Relative Information</h3>
+                                    </div>
                                     <div class="text">PRIORS COUNT | {{ obj.priors_count }} </div>
                                     <div class="text">TWO YEAR RECID | {{ obj.two_year_recid }} </div>
                                     <div class="text">JAIL IN | {{ obj.c_jail_in }} </div>
@@ -76,37 +126,21 @@
                                 style="height:30%">
                                   <div class="text card w-100" style="opacity: 0.5;">
                                     <div class="card-body text-dark">
-                                    {% csrf_token %}
-                                    <div>Which model you prefer?</div>
-                                    <div>Model 1: {{ obj.predictor1_prob }}</div>
-                                    <div>Model 2: {{ obj.predictor2_prob }}</div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                        <label class="form-check-label" for="inlineRadio1">1</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                        <label class="form-check-label" for="inlineRadio2">2</label>
-                                    </div>
-                                    <button class="btn btn-light" id="id_submit">Submit</button>
-                                        <!--
-                                        <form action="/survey/bail_judgement/{{ obj.id }}/" method="post">
-                                            {% csrf_token %}
-
-                                            <label for="is_fair">Is this fair?</label>
-                                            <div>
-                                                {{ bail_judgement_full_form.is_fair }}
-                                            </div>
-                                            <input class="btn btn-light" type="submit" value="submit">
-                                        </form>
-                                        -->
+                                      {% csrf_token %}
+                                      <div class="check h-100 w-100 container">
+                                        <div class="row w-100 h-100 m-0 p-0">
+                                          <div class="col-6">
+                                            <button class="yes-btn w-100 h-100">YES</button>
+                                          </div>
+                                          <div class="col-6">
+                                            <button class="no-btn w-100 h-100">NO</button>
+                                          </div>
+                                        </div>
+                                        <div class="toggle"></div>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>  
-                                
-                          
-                            
-                                
+                                </div> 
                             </div>
                             {% endfor %}
                         </div>

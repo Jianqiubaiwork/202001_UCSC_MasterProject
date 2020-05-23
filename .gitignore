@@ -9,6 +9,7 @@
 # data
 data/*
 media/*
+!media/*.csv
 
 # python venv
 *_venv
@@ -19,3 +20,4 @@ __pycache__
 
 # db
 db
+

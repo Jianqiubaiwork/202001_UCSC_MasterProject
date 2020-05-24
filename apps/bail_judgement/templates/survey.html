@@ -130,10 +130,10 @@ button:focus {
                                       <div class="check h-100 w-100 container">
                                         <div class="row w-100 h-100 m-0 p-0">
                                           <div class="col-6">
-                                            <button class="yes-btn w-100 h-100">YES</button>
+                                            <button class="yes-btn w-100 h-100">{{ obj.prediction.predictor1_prob|floatformat:3 }}</button>
                                           </div>
                                           <div class="col-6">
-                                            <button class="no-btn w-100 h-100">NO</button>
+                                            <button class="no-btn w-100 h-100">{{ obj.prediction.predictor3_prob|floatformat:3 }}</button>
                                           </div>
                                         </div>
                                         <div class="toggle"></div>

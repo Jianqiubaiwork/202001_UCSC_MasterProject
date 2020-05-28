@@ -58,7 +58,6 @@ class CompasPredictionModel(models.Model):
         return f"{self.id}"
 
 
-
 class TrainedModel(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=255)
@@ -68,5 +67,24 @@ class TrainedModel(models.Model):
 
 
 class SurveyQueueModel(models.Model):
-    compas_list = models.CharField(max_length=100)
-    vote_list = models.CharField(max_length=100)
+    time = models.DateTimeField()
+    case_id_one = models.IntegerField()
+    model_id_one = models.IntegerField()
+    case_id_two = models.IntegerField()
+    model_id_two = models.IntegerField()
+    case_id_three = models.IntegerField()
+    model_id_three = models.IntegerField()
+    case_id_four = models.IntegerField()
+    model_id_four = models.IntegerField()
+    case_id_five = models.IntegerField()
+    model_id_five = models.IntegerField()
+    case_id_six = models.IntegerField()
+    model_id_six = models.IntegerField()
+    case_id_seven = models.IntegerField()
+    model_id_seven = models.IntegerField()
+    case_id_eight = models.IntegerField()
+    model_id_eight = models.IntegerField()
+    case_id_nine = models.IntegerField()
+    model_id_nine = models.IntegerField()
+    case_id_ten = models.IntegerField()
+    model_id_ten = models.IntegerField()

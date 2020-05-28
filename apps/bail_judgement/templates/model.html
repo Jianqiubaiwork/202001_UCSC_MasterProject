@@ -53,9 +53,37 @@
           <img class="img-fluid mb-3 mb-lg-0 image" src="/static/thirdparty/img/ipad.png" alt="">
           <div class="middle">
             <div class="text">
-              <button class="btn btn-light btn-light-outline">
-                <a href="/bail_judgement/survey/?page=1">Your Survey</a>
+              <button class="btn btn-light btn-light-outline" data-toggle="modal" data-target="#surveyGuideModal">
+                Your Survey
               </button>
+            </div>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="surveyGuideModal" tabindex="-1" role="dialog" aria-labelledby="surveyGuideModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="surveyGuideModalLabel">Survey Guide</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                     We randomly select 10 cases from the COMPAS dataset. <br>
+                  </p> 
+                  <p>
+                    For each case, 2 of {{ count }} model predictions are shown to let you vote.
+                  </p> 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary">
+                    <a href="/bail_judgement/survey/?page=1" class="text-white">
+                      Start Survey</a></button>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -67,6 +95,19 @@
           </div>
         </div>
       </div>
+
+      <div class="row align-items-center justify-content-center  no-gutters mb-4 mb-lg-5 text-white">
+        <h4>
+          We have trained {{ count }} models on the COMPAS dataset
+        </h4>
+      </div>
+      <div class="row align-items-center justify-content-center no-gutters mb-4 mb-lg-5 text-white">
+        <p>
+          Each model predicts the <strong>Risk Percentange</strong> by given features, <br>
+          which indicates how likely a person will commit a crime in the future.
+        </p>
+      </div>
+      
 
       {% for trained_model in trained_models %}
         {% if trained_model.id|divisibleby:2 %}

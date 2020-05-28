@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load percentage %}
+{% load boolean %}
 
 {% block css_customs %}
 <style>
@@ -62,7 +63,7 @@
 	transition: all 0.3s;
 }
 
-.yes-btn, .no-btn{
+.A-btn, .B-btn{
 	z-index:20;
 }
 
@@ -93,17 +94,17 @@ button:focus {
                     <div class="col-12 d-flex align-items-center justify-content-center h-100">
                         <div class="img-container w-100 h-100 d-flex align-items-center justify-content-center">
                             {% for obj in page_obj %}
-                            <img src="/static/myimg/{{ page_number }}.jpg" alt="Avatar" class="image">
+                            <img src="/static/myimg/{{ page_obj.number }}.jpg" alt="Avatar" class="image">
                             <div class="middle h-100 w-100 container">
-                                <div class="row border d-flex justify-content-center justify-content-center"
+                                <div class="row border d-flex justify-content-center align-items-center"
                                 style="height: 5%;">
-                                  <div class="text">ID | {{ obj.id }} </div>
+                                  <div id="case-id" class="text" data-value="{{ obj.id }}">ID | {{ obj.id }} </div>
                                 </div>
-                                <div class="row border d-flex justify-content-center justify-content-center"
+                                <div class="row border d-flex justify-content-center"
                                 style="height: 65%;">
                                    <div class="col-6">
                                     <div class="text mt-4">
-                                      <h3>Sensitive Information</h3>
+                                      <h3><u>Sensitive Information</u></h3>
                                     </div>
                                     <div class="text">SEX | {{ obj.sex }} </div>
                                     <div class="text">AGE | {{ obj.age }} </div>
@@ -111,29 +112,57 @@ button:focus {
                                    </div>
                                    <div class="col-6">
                                     <div class="text mt-4">
-                                      <h3>Relative Information</h3>
+                                      <h3><u>Relative Information</u></h3>
                                     </div>
-                                    <div class="text">PRIORS COUNT | {{ obj.priors_count }} </div>
-                                    <div class="text">TWO YEAR RECID | {{ obj.two_year_recid }} </div>
-                                    <div class="text">JAIL IN | {{ obj.c_jail_in }} </div>
-                                    <div class="text">JAIL OUT | {{ obj.c_jail_out }} </div>
-                                    <div class="text">CHARGE DEGREE | {{ obj.c_charge_degree }} </div>
-                                    <div class="text">SCORE TEXT | {{ obj.score_text }} </div>
-                                    <div class="text">DECILE SCORE | {{ obj.decile_score }} </div>
+                                    <div class="text" data-toggle="tooltip" data-placement="top" 
+                                    title="A feature to count if this person had any previous charges">
+                                    PRIORS COUNT | {{ obj.priors_count }} </div>
+                                    <div class="text" data-toggle="tooltip" data-placement="top" 
+                                    title="A feature to indicate if this paerson have any furthur criminals in two years">
+                                    TWO YEAR RECID | {{ obj.two_year_recid|boolean }} </div>
+                                    <div class="text"  data-toggle="tooltip" data-placement="top" 
+                                    title="In-jail time range">
+                                    RANGE | {{ obj.days }} </div>
+                                    <div class="text"  data-toggle="tooltip" data-placement="top"  data-html="true"
+                                    title="Risk level <br>(how likely this person will commit a crime in the future)">
+                                    SCORE TEXT | {{ obj.score_text }} </div>
+                                    <div class="text"  data-toggle="tooltip" data-placement="top"  data-html="true"
+                                    title="Risk score <br>(how likely this person will commit a crime in the future)">
+                                    DECILE SCORE | {{ obj.decile_score }} </div>
                                    </div>
                                 </div>
-                                <div class="row d-flex justify-content-center justify-content-center"
+                                <div class="row d-flex justify-content-center"
                                 style="height:30%">
-                                  <div class="text card w-100" style="opacity: 0.5;">
-                                    <div class="card-body text-dark">
-                                      {% csrf_token %}
-                                      <div class="check h-100 w-100 container">
+                                  <div class="text card w-100 h-100" style="opacity: 0.5;">
+                                    {% csrf_token %}
+                                    <div class="card-header text-dark bg-warning w-100" style="height: 40%;">
+                                      <p><strong>
+                                        Risk percentage predictions of two random models are selected for you, <br>
+                                        which one do you think, based on the information above, is more relavant?
+                                      </strong></p>
+                                    </div>
+                                    <div class="card-body text-dark p-0 w-100" style="height: 40%;">
+                                      <div class="check h-100 w-100 container p-0">
                                         <div class="row w-100 h-100 m-0 p-0">
-                                          <div class="col-6">
-                                            <button class="yes-btn w-100 h-100">{{ obj.prediction.predictor1_prob|floatformat:3 }}</button>
+                                          <div class="col-6 h-100 w-100 p-0">
+                                            <div class="row p-0 m-0 w-100 justify-content-center" style="height: 30%;">
+                                              <div id="A-model-id" class="A-model" data-value="{{ obj.predictions.A_id }}">Model {{ obj.predictions.A_id }} says:</div>
+                                            </div>
+                                            <div class="row p-0 m-0 w-100" style="height: 70%;">
+                                              <button class="A-btn w-100 h-100"   data-toggle="tooltip" data-placement="top"  data-html="true"
+                                              title="This person has {{ obj.predictions.A|percentage }} chance to commit a crime in the future">
+                                              {{ obj.predictions.A|percentage }}</button>
+                                            </div>
                                           </div>
-                                          <div class="col-6">
-                                            <button class="no-btn w-100 h-100">{{ obj.prediction.predictor3_prob|floatformat:3 }}</button>
+                                          <div class="col-6 h-100 w-100 p-0">
+                                            <div class="row p-0 m-0 w-100 justify-content-center" style="height: 30%;">
+                                              <div id="B-model-id" class="B-model" data-value="{{ obj.predictions.B_id }}">Model {{ obj.predictions.B_id }} says:</div>
+                                            </div>
+                                            <div class="row p-0 m-0 w-100" style="height: 70%;">
+                                              <button class="B-btn w-100 h-100"  data-toggle="tooltip" data-placement="top"  data-html="true"
+                                              title="This person has {{ obj.predictions.B|percentage }} chance to commit a crime in the future">
+                                              {{ obj.predictions.B|percentage }}</button>
+                                            </div>
                                           </div>
                                         </div>
                                         <div class="toggle"></div>
@@ -147,10 +176,10 @@ button:focus {
                     </div>
                 </div>
                 <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
-                  <div class="col-3">
+                  <div class="col-3 page-btn-group">
                     {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo; first &nbsp;</a>
-                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a href="?page=1" onclick="saveCurrent()">&laquo; first &nbsp;</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" onclick="saveCurrent()">previous</a>
                     {% endif %}
                   </div>
                   <div class="col-6">
@@ -158,17 +187,56 @@ button:focus {
                       Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                     </span>
                   </div>
-                  <div class="col-3">
+                  <div class="col-3 page-btn-group">
                     {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">next &nbsp;</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    <a href="?page={{ page_obj.next_page_number }}" onclick="saveCurrent()">next &nbsp;</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" onclick="saveCurrent()">last &raquo;</a>
                     {% endif %}  
                   </div>
                     
                 </div>
             </span>
         </div>     
+        <button id="id_save_btn" class="btn btn-primary btn-sm btn-block"
+        data-toggle="modal" data-target="#surveyModal">Comfirm & Save</button>
     </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="surveyModal" tabindex="-1" role="dialog" aria-labelledby="surveyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="surveyModalLabel">Your Responses</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!--
+          {% for n in range %}
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="">{{ forloop.counter }}. 
+                For case <input style="width: 20%;" type="hidden" />, 
+                you voted for model <input style="width: 10%;" type="hidden"></label>.
+            </div>
+          </div>
+          {% endfor %}
+        -->
+
+          <p id="test"></p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
@@ -208,37 +276,124 @@ button:focus {
 
 {% block js_customs %}
 <script>
+var data_list = [
+  {
+    page_id : 1,
+    case_id : null,
+    model_id : null,
+  },
+  {
+    page_id : 2,
+    case_id : null,
+    model_id : null,
+  },
+  {
+    page_id : 3,
+    case_id : null,
+    model_id : null,
+  },
+  {
+    page_id : 4,
+    case_id : null,
+    model_id : null,
+  },
+  {
+    page_id : 5,
+    case_id : null,
+    model_id : null,
+  },
+  {
+    page_id : 6,
+    case_id : null,
+    model_id : null,
+  },
+  {
+    page_id : 7,
+    case_id : null,
+    model_id : null,
+  },
+  {
+    page_id : 8,
+    case_id : null,
+    model_id : null,
+  },
+  {
+    page_id : 9,
+    case_id : null,
+    model_id : null,
+  },
+  {
+    page_id : 10,
+    case_id : null,
+    model_id : null,
+  },
+];
+var page_number = '{{ page_obj.number }}';
 
-var is_fair = 0
+//JSON.parse(sessionStorage.setItem('p)age_number', 'data');
 
-$('#id_submit').click(function(){
-  if($('#inlineRadio1').is(':checked')) { 
-    is_fair = 1;
-    alert('You chose ' + is_fair);
+$( document ).ready(function() {
+  checkSelected();
+  $('#id_save_btn').hide();
+});
+
+function checkSelected() {
+  if ($('.A-btn B-btn').is(':checked')) {
+    $('.page-btn-group').show();
   }
-  else if ($('#inlineRadio2').is(':checked')) { 
-    is_fair = 2;
-    alert('You chose ' + is_fair);
+  else {
+    $('.page-btn-group').hide();
   }
-  alert('You chose ' + is_fair);
-  /*
-  $.post( "/survey/bail_judgement/{{ obj.id }}/", { is_fair: is_fair })
-    .done(function( data ) {
-      alert( "Data Loaded: " + data );
-    });
-  */
- /*
-  $.ajax({
-    url : url,
-    type: "POST",
-    data : {
-      csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value},
-    dataType : "json",
-    success: function( data ){
-        // do something
-    }
-  });
-  */
+}
+
+$('.A-btn').click(function() {
+  $('.page-btn-group').show();
+  if (page_number == 10) {
+    $('#id_save_btn').show();
+  }
+  var case_id = document.getElementById('case-id').getAttribute('data-value');
+  var model_id = document.getElementById('A-model-id').getAttribute('data-value');
+  var data = {};
+  data.case_id = case_id;
+  data.model_id = model_id;
+  //data_list[page_number - 1].model_id = model_id;
+  //data_list[page_number - 1].case_id = case_id;
+  sessionStorage.setItem('{{ page_obj.number }}', JSON.stringify(data));
+});
+
+$('.B-btn').click(function() {
+  $('.page-btn-group').show();
+  if (page_number == 10) {
+    $('#id_save_btn').show();
+  }
+  var case_id = document.getElementById('case-id').getAttribute('data-value');
+  var model_id = document.getElementById('B-model-id').getAttribute('data-value');
+  var data = {};
+  data.case_id = case_id;
+  data.model_id = model_id;
+  //data_list[page_number - 1].model_id = model_id;
+  //data_list[page_number - 1].case_id = case_id;
+  sessionStorage.setItem('{{ page_obj.number }}', JSON.stringify(data));
+});
+
+$('#id_save_btn').click(function() {
+  for (i = 0; i < 10; i++) {
+    data_list[i] = JSON.parse(sessionStorage.getItem(i+1));
+  }
+  var i, txt = " ";
+  for (i in data_list) {
+    txt += "<div class='form-row'><div class='form-group col-md-12'>" +
+      (Number(i) + 1).toString() + ". For case " + data_list[i].case_id + ", you voted for model " +
+      data_list[i].model_id + "</div></div>"
+  }
+  document.getElementById("test").innerHTML = txt;
 });
 </script>
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
 {% endblock %}

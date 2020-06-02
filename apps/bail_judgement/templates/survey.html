@@ -91,7 +91,7 @@ button:focus {
         <div class="pagination h-100 w-100">
             <span class="step-links h-100 w-100">
                 <div class="row" style="height: 90%;">
-                    <div class="col-12 d-flex align-items-center justify-content-center h-100">
+                    <div class="col-12 col-md-12 d-flex align-items-center justify-content-center h-100">
                         <div class="img-container w-100 h-100 d-flex align-items-center justify-content-center">
                             {% for obj in page_obj %}
                             <img src="/static/myimg/{{ page_obj.number }}.jpg" alt="Avatar" class="image">
@@ -102,7 +102,7 @@ button:focus {
                                 </div>
                                 <div class="row border d-flex justify-content-center"
                                 style="height: 65%;">
-                                   <div class="col-6">
+                                   <div class="col-6 col-md-6">
                                     <div class="text mt-4">
                                       <h3><u>Sensitive Information</u></h3>
                                     </div>
@@ -110,7 +110,7 @@ button:focus {
                                     <div class="text">AGE | {{ obj.age }} </div>
                                     <div class="text">RACE | {{ obj.race }} </div>
                                    </div>
-                                   <div class="col-6">
+                                   <div class="col-6 col-md-6">
                                     <div class="text mt-4">
                                       <h3><u>Relative Information</u></h3>
                                     </div>
@@ -144,7 +144,7 @@ button:focus {
                                     <div class="card-body text-dark p-0 w-100" style="height: 40%;">
                                       <div class="check h-100 w-100 container p-0">
                                         <div class="row w-100 h-100 m-0 p-0">
-                                          <div class="col-6 h-100 w-100 p-0">
+                                          <div class="col-6 col-md-6 h-100 w-100 p-0">
                                             <div class="row p-0 m-0 w-100 justify-content-center" style="height: 30%;">
                                               <div id="A-model-id" class="A-model" data-value="{{ obj.predictions.A_id }}">Model {{ obj.predictions.A_id }} says:</div>
                                             </div>
@@ -154,7 +154,7 @@ button:focus {
                                               {{ obj.predictions.A|percentage }}</button>
                                             </div>
                                           </div>
-                                          <div class="col-6 h-100 w-100 p-0">
+                                          <div class="col-6 col-md-6 h-100 w-100 p-0">
                                             <div class="row p-0 m-0 w-100 justify-content-center" style="height: 30%;">
                                               <div id="B-model-id" class="B-model" data-value="{{ obj.predictions.B_id }}">Model {{ obj.predictions.B_id }} says:</div>
                                             </div>
@@ -176,18 +176,18 @@ button:focus {
                     </div>
                 </div>
                 <div class="row d-flex align-items-center justify-content-center" style="height: 10%;">
-                  <div class="col-3 page-btn-group">
+                  <div class="col-3 col-md-3 page-btn-group">
                     {% if page_obj.has_previous %}
                     <a href="?page=1" onclick="saveCurrent()">&laquo; first &nbsp;</a>
                     <a href="?page={{ page_obj.previous_page_number }}" onclick="saveCurrent()">previous</a>
                     {% endif %}
                   </div>
-                  <div class="col-6">
+                  <div class="col-6 col-md-6">
                     <span class="current text-white">
                       Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                     </span>
                   </div>
-                  <div class="col-3 page-btn-group">
+                  <div class="col-3 col-md-3 page-btn-group">
                     {% if page_obj.has_next %}
                     <a href="?page={{ page_obj.next_page_number }}" onclick="saveCurrent()">next &nbsp;</a>
                     <a href="?page={{ page_obj.paginator.num_pages }}" onclick="saveCurrent()">last &raquo;</a>
@@ -197,7 +197,7 @@ button:focus {
                 </div>
             </span>
         </div>     
-        <button id="id_save_btn" class="btn btn-primary btn-sm btn-block"
+        <button id="id-confirm-btn" class="btn btn-primary btn-sm btn-block"
         data-toggle="modal" data-target="#surveyModal">Comfirm & Save</button>
     </div>
 </div>
@@ -228,12 +228,12 @@ button:focus {
           {% endfor %}
         -->
 
-          <p id="test"></p>
+          <p id="id-modal-body"></p>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button id="id-save-btn" type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -276,65 +276,74 @@ button:focus {
 
 {% block js_customs %}
 <script>
-var data_list = [
+  /*
+var survey_data = {
+  '1' : 
   {
-    page_id : 1,
     case_id : null,
     model_id : null,
   },
+  '2' : 
   {
-    page_id : 2,
     case_id : null,
     model_id : null,
   },
+  '3' : 
   {
-    page_id : 3,
     case_id : null,
     model_id : null,
   },
+  '4' : 
   {
-    page_id : 4,
     case_id : null,
     model_id : null,
   },
+  '5' : 
   {
-    page_id : 5,
     case_id : null,
     model_id : null,
   },
+  '6' : 
   {
-    page_id : 6,
     case_id : null,
     model_id : null,
   },
+  '7' : 
   {
-    page_id : 7,
     case_id : null,
     model_id : null,
   },
+  '8' : 
   {
-    page_id : 8,
     case_id : null,
     model_id : null,
   },
+  '9' : 
   {
-    page_id : 9,
     case_id : null,
     model_id : null,
   },
+  '10' : 
   {
-    page_id : 10,
     case_id : null,
     model_id : null,
   },
-];
+};
+*/
+var survey_data = {
+  '0': {
+    page_id : 0,
+    model_id : null,
+    case_id : null
+  }
+}
 var page_number = '{{ page_obj.number }}';
 
 //JSON.parse(sessionStorage.setItem('p)age_number', 'data');
 
 $( document ).ready(function() {
   checkSelected();
-  $('#id_save_btn').hide();
+  $('#id-confirm-btn').hide();
 });
 
 function checkSelected() {
@@ -349,44 +358,61 @@ function checkSelected() {
 $('.A-btn').click(function() {
   $('.page-btn-group').show();
   if (page_number == 10) {
-    $('#id_save_btn').show();
+    $('#id-confirm-btn').show();
   }
   var case_id = document.getElementById('case-id').getAttribute('data-value');
   var model_id = document.getElementById('A-model-id').getAttribute('data-value');
-  var data = {};
+  var data = {}
+  data.page_id = page_number;
   data.case_id = case_id;
   data.model_id = model_id;
-  //data_list[page_number - 1].model_id = model_id;
-  //data_list[page_number - 1].case_id = case_id;
-  sessionStorage.setItem('{{ page_obj.number }}', JSON.stringify(data));
+  sessionStorage.setItem(page_number, JSON.stringify(data));
 });
 
 $('.B-btn').click(function() {
   $('.page-btn-group').show();
   if (page_number == 10) {
-    $('#id_save_btn').show();
+    $('#id-confirm-btn').show();
   }
   var case_id = document.getElementById('case-id').getAttribute('data-value');
   var model_id = document.getElementById('B-model-id').getAttribute('data-value');
-  var data = {};
+  var data = {}
+  data.page_id = page_number;
   data.case_id = case_id;
   data.model_id = model_id;
-  //data_list[page_number - 1].model_id = model_id;
-  //data_list[page_number - 1].case_id = case_id;
-  sessionStorage.setItem('{{ page_obj.number }}', JSON.stringify(data));
+  sessionStorage.setItem(page_number, JSON.stringify(data));
 });
 
-$('#id_save_btn').click(function() {
-  for (i = 0; i < 10; i++) {
-    data_list[i] = JSON.parse(sessionStorage.getItem(i+1));
+$('#id-confirm-btn').click(function() {
+  for (i = 1; i <= 10; i++) {
+    survey_data[i] = JSON.parse(sessionStorage.getItem(i));
   }
   var i, txt = " ";
-  for (i in data_list) {
-    txt += "<div class='form-row'><div class='form-group col-md-12'>" +
-      (Number(i) + 1).toString() + ". For case " + data_list[i].case_id + ", you voted for model " +
-      data_list[i].model_id + "</div></div>"
+  for (i in survey_data) {
+    if (i != 0) {
+      txt += "<div class='form-row'><div class='form-group col-md-12'>" +
+      (Number(i)).toString() + ". For case " + survey_data[i].case_id + ", you voted for model " +
+      survey_data[i].model_id + "." + "</div></div>"
+    }
   }
-  document.getElementById("test").innerHTML = txt;
+  document.getElementById("id-modal-body").innerHTML = txt;
+});
+
+$('#id-save-btn').click(function() {
+  $.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+  });
+  $.ajax({
+      type: "POST",
+      url: "/bail_judgement/survey/",
+      //csrfmiddlewaretoken: '{{ csrf_token }}',
+      data: {
+        'survey_data': JSON.stringify(survey_data)
+      },
+      success: function () {
+        alert('success!');
+      }
+    });
 });
 </script>
 

@@ -88,3 +88,11 @@ class SurveyQueueModel(models.Model):
     model_id_nine = models.IntegerField()
     case_id_ten = models.IntegerField()
     model_id_ten = models.IntegerField()
+
+
+class SurveyModel(models.Model):
+    time = models.DateTimeField()
+    case_id = models.IntegerField()
+    model_one = models.IntegerField(default=0)
+    model_two = models.IntegerField(default=0)
+    model_three = models.IntegerField(default=0)

@@ -7,6 +7,8 @@ from .forms import *
 from .models import *
 
 import random
+import json
+import datetime
 
 
 class ModelView(TemplateView):
@@ -82,6 +84,28 @@ class SurveyView(TemplateView):
 
 
     def post(self, request):
+        if request.is_ajax():
+            survey_data = request.POST.get('survey_data', None)
+            survey_data = json.loads(survey_data)
+            for i in range (1, 11):
+                try:
+                    case_id = survey_data[str(i)]['case_id']
+                    model_id = survey_data[str(i)]['model_id']
+                    survey_model = SurveyModel.objects.get_or_create(
+                        case_id=case_id
+                    )
+                    if int(model_id) == 1:
+                        survey_model.model_one += 1
+                    elif int(model_id) == 2:
+                        survey_model.model_two += 1
+                    elif int(model_id) == 3:    
+                        survey_model.model_three += 1
+                    survey_model.save()
+                except KeyError:
+                    pass 
+            
+        else:
+            print("Not Ajax")
         context = {
 
         }

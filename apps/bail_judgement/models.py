@@ -91,7 +91,7 @@ class SurveyQueueModel(models.Model):
 
 
 class SurveyModel(models.Model):
-    time = models.DateTimeField()
+    time = models.DateTimeField(blank=True, null=True)
     case_id = models.IntegerField()
     model_one = models.IntegerField(default=0)
     model_two = models.IntegerField(default=0)

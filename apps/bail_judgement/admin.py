@@ -11,5 +11,6 @@ from import_export.admin import ImportExportModelAdmin
 @admin.register(CompasPredictionModel)
 @admin.register(TrainedModel)
 @admin.register(SurveyQueueModel)
+@admin.register(SurveyModel)
 class ViewAdmin(ImportExportModelAdmin):
     pass

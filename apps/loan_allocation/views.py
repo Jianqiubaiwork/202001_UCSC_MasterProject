@@ -9,7 +9,7 @@ from .models import *
 
 
 class ModelView(TemplateView):
-    template_name = 'model.html'
+    template_name = 'loan_model.html'
 
     def get(self, request):
         context = {
@@ -26,7 +26,7 @@ class ModelView(TemplateView):
 
     
 class SurveyView(TemplateView):
-    template_name = 'survey.html'
+    template_name = 'loan_survey.html'
 
     def get(self, request):
         context = {
@@ -43,7 +43,7 @@ class SurveyView(TemplateView):
 
 
 class DataView(TemplateView):
-    template_name = 'data.html'
+    template_name = 'loan_data.html'
 
     def get(self, request):
         context = {

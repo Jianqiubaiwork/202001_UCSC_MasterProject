@@ -116,8 +116,15 @@ class DataView(TemplateView):
     template_name = 'data.html'
 
     def get(self, request):
+        compas_data = CompasModel.objects.all()
+        prediction_data = CompasPredictionModel.objects.all()
+        model_data = TrainedModel.objects.all()
+        survey_data = SurveyModel.objects.all()
         context = {
-
+            'compas_data' : compas_data,
+            'prediction_data' : prediction_data,
+            'model_data' : model_data,
+            'survey_data': survey_data
         }
         return render(request, self.template_name, context)
 

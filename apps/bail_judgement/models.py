@@ -10,6 +10,7 @@ RACE_CHOICES = {
     ('Other', 'Ohter')
 }
 
+
 class CompasModel(models.Model):
     id = models.IntegerField(primary_key=True)
     sex = models.CharField(null=True, max_length=50)
@@ -36,7 +37,6 @@ class CompasModel(models.Model):
     #predictor1_prob = models.FloatField(null=True)
     #predictor2_prob = models.FloatField(null=True)
     #predictor3_prob = models.FloatField(null=True)
-
 
     image_name = models.CharField(null=True, max_length=100)
 

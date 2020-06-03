@@ -3,100 +3,135 @@
 
 {% block css_customs %}
 <link rel="stylesheet" type="text/css" href="/static/DataTables/datatables.css">
+
+<style>
+    .card{
+        opacity: 0.9;
+    }
+</style>
+
 {% endblock %}
 
 {% block content %}
 
 <div class="mx-auto text-center d-flex align-items-center" style="height: 100%;">
     <div class="container h-100" style="padding-top: 50px; padding-bottom: 50px;">
-        <div class="container h-100">
-            <h2>Dynamic Tabs</h2>
-                <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-                <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
-                </ul>
-            
-                <div class="tab-content text-white">
-                <div id="home" class="tab-pane fade in active">
-                    <h3>HOME</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div id="menu1" class="tab-pane fade">
-                    <h3>Menu 1</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
-                <div id="menu2" class="tab-pane fade">
-                    <h3>Menu 2</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                </div>
-                <div id="menu3" class="tab-pane fade">
-                    <h3>Menu 3</h3>
-                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                </div>
-                </div>
-        </div>
-    </div>
-</div>
-
-<!--
-<div class="mx-auto text-center d-flex align-items-center" style="height: 100%;">
-    <div class="container h-100" style="padding-top: 100px; padding-bottom: 100px;">
-        <div class="container h-100">
-            <div class="card h-100 bg-dark text-white">
+        <div class="container-fluid h-100 mt-4 p-0">
+            <div class="card h-100 w-100 bg-white text-dark m-0 p-0">
                 <div class="card-header" style="height: 5%;">
-                    <h6>Bail Judgement Overview</h6>
+                    <ul class="nav nav-tabs">
+                        <li class="active pr-2"><a data-toggle="tab" href="#compas">Compas</a></li>
+                        <li class="pr-2"><a data-toggle="tab" href="#prediction">Prediction</a></li>
+                        <li class="pr-2"><a data-toggle="tab" href="#model">Model</a></li>
+                        <li class="pr-2"><a data-toggle="tab" href="#vote">Vote</a></li>
+                    </ul>
                 </div>
-                <div class="card-body" style="height: 90%;">
-                    <table id="bailJudgementTable" class="table table-dark">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Sex</th>
-                                <th>Age</th>
-                                <th>Prior Offenses</th>
-                                <th>Reason</th>
-                                <th>Risk Score</th>
-                                <th>Label</th>
-                                <th>Is Fair?</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for obj in objs %}
-                            <tr>
-                                <td>{{ obj.id }}</td>
-                                <td>{{ obj.name }}</td>
-                                <td>{{ obj.sex }}</td>
-                                <td>{{ obj.age }}</td>
-                                <td>{{ obj.priors_count }}</td>
-                                <td>{{ obj.r_charge_desc }}</td>
-                                <td>{{ obj.decile_score }}</td>
-                                <td>{{ obj.label }}</td>
-                                <td>{{ obj.is_fair }}</td>
-                                <td>
-                                    <button class="">
-                                        <a href="/survey/bail_judgement/{{ obj.id }}">
-                                            Vote
-                                        </a>
-                                    </button>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-footer" style="height: 5%;">
-
+                <div class="card-body" style="height: 95%">
+                    <div class="tab-content text-dark">
+                        <div id="compas" class="tab-pane fade in active">
+                            <h5>COMPAS Data</h5>
+                            <table id="compasTable" class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Sex</th>
+                                        <th>Age</th>
+                                        <th>Race</th>
+                                        <th>Risk Score</th>
+                                        <th>Priors Count</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in compas_data %}
+                                    <tr>
+                                        <td>{{ data.id }}</td>
+                                        <td>{{ data.sex }}</td>
+                                        <td>{{ data.age }}</td>
+                                        <td>{{ data.race }}</td>
+                                        <td>{{ data.decile_score }}</td>
+                                        <td>{{ data.priors_count }}</td>                                        
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="prediction" class="tab-pane fade">
+                            <h5>Predictions</h5>
+                            <table id="modelTable" class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Pred 1</th>
+                                        <th>Pred 2</th>
+                                        <th>Pred 3</th>
+                                        <th>Pred Prob 1</th>
+                                        <th>Pred Prob 2</th>
+                                        <th>Pred Prob 3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in prediction_data %}
+                                    <tr>
+                                        <td>{{ data.id }}</td>
+                                        <td>{{ data.predictor1 }}</td>
+                                        <td>{{ data.predictor2 }}</td>
+                                        <td>{{ data.predictor3 }}</td>
+                                        <td>{{ data.predictor1_prob }}</td>
+                                        <td>{{ data.predictor2_prob }}</td>
+                                        <td>{{ data.predictor3_prob }}</td>                                   
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="model" class="tab-pane fade">
+                            <h5>Pre-trained Model Descriptions</h5>
+                            <table id="modelTable" class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in model_data %}
+                                    <tr>
+                                        <td>{{ data.name }}</td>
+                                        <td>{{ data.description }}</td>                                  
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="vote" class="tab-pane fade">  
+                            <h5>Survey Responses</h5>
+                            <table id="surveyTable" class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Model 1</th>
+                                        <th>Model 2</th>
+                                        <th>Model 3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in survey_data %}
+                                    <tr>
+                                        <td>{{ data.case_id }}</td>
+                                        <td>{{ data.model_one }}</td>
+                                        <td>{{ data.model_two }}</td>
+                                        <td>{{ data.model_three }}</td>                                 
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
--->
-
 
 {% endblock %}
 
@@ -112,7 +147,19 @@
 
 <script>
 $(document).ready( function () {
-    $('#bailJudgementTable').DataTable( {
+    $('#compasTable').DataTable( {
+        "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    } );
+
+    $('#predictionTable').DataTable( {
+        "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    } );
+
+    $('#modelTable').DataTable( {
+        "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    } );
+
+    $('#surveyTable').DataTable( {
         "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
     } );
 } );

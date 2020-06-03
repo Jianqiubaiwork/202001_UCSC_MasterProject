@@ -232,7 +232,13 @@ button:focus {
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!--
+        <button type="button" class="btn btn-primary">
+          <a href="/bail_judgement/data" class="text-white">
+            View Data
+          </a>
+        </button>
+        -->
         <button id="id-save-btn" type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
@@ -410,8 +416,11 @@ $('#id-save-btn').click(function() {
         'survey_data': JSON.stringify(survey_data)
       },
       success: function () {
-        alert('success!');
+        alert('Your responses have been collected successfully!');
       }
+    })
+    .done(function () {
+      window.location.replace('/bail_judgement/data');
     });
 });
 </script>

@@ -1,4 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import (
+    render, redirect, 
+    get_object_or_404, HttpResponseRedirect,
+    reverse
+)
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.core.paginator import Paginator
@@ -103,13 +107,14 @@ class SurveyView(TemplateView):
                     survey_model.save()
                 except KeyError:
                     pass 
-            
         else:
             print("Not Ajax")
         context = {
-
         }
-        return render(request, self.template_name, context)
+        url = reverse('bail_judgement:bail_data') # Replace your_app with the name of your app
+        return HttpResponseRedirect(url)
+        #return render(request, 'data.html', context)
+        #return redirect('/bail_judgement/data')
 
 
 class DataView(TemplateView):

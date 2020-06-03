@@ -91,8 +91,13 @@ class SurveyQueueModel(models.Model):
 
 
 class SurveyModel(models.Model):
-    time = models.DateTimeField(blank=True, null=True)
+    # time = models.DateTimeField(blank=True, null=True)
     case_id = models.IntegerField()
     model_one = models.IntegerField(default=0)
     model_two = models.IntegerField(default=0)
     model_three = models.IntegerField(default=0)
+
+    def __str__(self):
+        return (
+            f"{self.case_id} | {self.model_one} | {self.model_two} | {self.model_three}"
+        )

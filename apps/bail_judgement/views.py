@@ -91,7 +91,7 @@ class SurveyView(TemplateView):
                 try:
                     case_id = survey_data[str(i)]['case_id']
                     model_id = survey_data[str(i)]['model_id']
-                    survey_model = SurveyModel.objects.get_or_create(
+                    survey_model, created = SurveyModel.objects.get_or_create(
                         case_id=case_id
                     )
                     if int(model_id) == 1:

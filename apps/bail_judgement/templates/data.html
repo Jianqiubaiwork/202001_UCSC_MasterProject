@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load percentage %}
 
 {% block css_customs %}
 <link rel="stylesheet" type="text/css" href="/static/DataTables/datatables.css">
@@ -76,9 +77,9 @@
                                         <td>{{ data.predictor1 }}</td>
                                         <td>{{ data.predictor2 }}</td>
                                         <td>{{ data.predictor3 }}</td>
-                                        <td>{{ data.predictor1_prob }}</td>
-                                        <td>{{ data.predictor2_prob }}</td>
-                                        <td>{{ data.predictor3_prob }}</td>                                   
+                                        <td>{{ data.predictor1_prob|percentage }}</td>
+                                        <td>{{ data.predictor2_prob|percentage }}</td>
+                                        <td>{{ data.predictor3_prob|percentage }}</td>                                   
                                     </tr>
                                     {% endfor %}
                                 </tbody>

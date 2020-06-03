@@ -110,3 +110,20 @@ class SurveyView(TemplateView):
 
         }
         return render(request, self.template_name, context)
+
+
+class DataView(TemplateView):
+    template_name = 'data.html'
+
+    def get(self, request):
+        context = {
+
+        }
+        return render(request, self.template_name, context)
+
+
+    def post(self, request):
+        context = {
+
+        }
+        return render(request, self.template_name, context)

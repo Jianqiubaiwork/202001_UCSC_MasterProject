@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # own
     'apps.bail_judgement',
+    'apps.loan_allocation',
 ]
 
 MIDDLEWARE = [

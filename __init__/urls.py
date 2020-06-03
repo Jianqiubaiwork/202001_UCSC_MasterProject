@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name="home"),
     path('bail_judgement/', include('apps.bail_judgement.urls')),
+    path('loan_allocation/', include('apps.loan_allocation.urls')),
 ]
 
 if settings.DEBUG:

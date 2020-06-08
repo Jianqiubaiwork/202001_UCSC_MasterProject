@@ -12,6 +12,7 @@ media/*
 !media/*.csv
 
 # python venv
+*env*
 *_venv
 django/*_venv
 
